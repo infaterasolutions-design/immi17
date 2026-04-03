@@ -601,14 +601,15 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                 </a>`;
             }).join('');
-            featuresHtml += `<section class="w-screen max-w-[1100px] relative left-[50%] -translate-x-[50%] border-t border-slate-200 pt-10 px-4 sm:px-6 mb-2"><h2 class="text-xl md:text-2xl font-bold headline-font text-slate-900 mb-4 border-l-4 border-primary pl-4">Related Articles</h2><div class="relative"><div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-2 hide-scrollbar">${sliderHTML}</div></div></section>`;
+            const centerClass = rawRelated.length < 3 ? 'md:justify-center' : '';
+            featuresHtml += `<section class="w-screen max-w-[1000px] relative left-[50%] -translate-x-[50%] border-t border-slate-200 pt-10 px-4 sm:px-6 mb-2"><h2 class="text-xl md:text-2xl font-bold headline-font text-slate-900 mb-4 border-l-4 border-primary pl-4">Related Articles</h2><div class="relative"><div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-2 hide-scrollbar ${centerClass}">${sliderHTML}</div></div></section>`;
         }
 
         // Sponsored Content
         const sponCfg = window.AdminConfig?.sponsoredContent || { enabled: false, items: [] };
         if (sponCfg.enabled && sponCfg.items && sponCfg.items.length > 0) {
             let sponHTML = sponCfg.items.slice(0, sponCfg.maxItems || 6).map(item => {
-                return `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="flex items-start justify-between gap-4 group">
+                return `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="flex items-start justify-between gap-4 group w-full md:w-[calc(50%-20px)] lg:w-[calc(33.333%-27px)] max-w-[340px]">
                     <div class="flex-1 pr-2">
                         <h3 class="text-[13px] sm:text-[14px] font-semibold text-slate-700 group-hover:text-primary transition-colors leading-[1.4] mb-1.5">${item.title}</h3>
                         <div class="text-[11px] text-slate-400 font-medium tracking-tight">Sponsored by ${item.sponsor}</div>
@@ -622,7 +623,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   <h2 class="text-[16px] md:text-[18px] font-bold text-slate-700 tracking-tight">Sponsored Content</h2>
                   <a href="#" class="text-[11px] font-bold text-slate-500 hover:text-slate-800 transition-colors uppercase tracking-wider">Advertise Here</a>
                 </div>
-                <div class="bg-white border border-slate-200 py-6 px-4 sm:px-6"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">${sponHTML}</div></div>
+                <div class="bg-white border border-slate-200 py-6 px-4 sm:px-6"><div class="flex flex-wrap justify-center gap-x-10 gap-y-8">${sponHTML}</div></div>
               </div>
             </section>`;
         }
