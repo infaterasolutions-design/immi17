@@ -77,9 +77,9 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
 
         {/* Related Articles Slider */}
         {relatedArticles?.length > 0 && (
-          <section className="border-t border-slate-200 pt-10">
+          <section className="w-screen max-w-[1350px] relative left-[50%] -translate-x-[50%] border-t border-slate-200 pt-10 px-4 md:px-8 mb-2">
             <div className="flex items-center justify-between mb-4">
-              <h2 className="text-lg md:text-xl font-bold headline-font text-slate-900">Related Articles</h2>
+              <h2 className="text-xl md:text-2xl font-bold headline-font text-slate-900 border-l-4 border-primary pl-4">Related Articles</h2>
               <div className="hidden md:flex gap-2">
                 <button onClick={scrollLeft} className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-colors">
                   <span className="material-symbols-outlined text-slate-600">chevron_left</span>
@@ -93,7 +93,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
             <div className="relative">
               <div 
                 ref={sliderRef}
-                className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pb-4"
+                className="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-2"
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {/* Hide Webkit Scrollbar CSS */}
@@ -105,7 +105,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
                   <Link 
                     key={related.id} 
                     href={`/article/${related.id}`} 
-                    className="snap-start shrink-0 group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex flex-col bg-white"
+                    className="snap-start shrink-0 group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 w-[85%] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(33.333%-24px)] min-w-[320px] max-w-[450px] flex flex-col bg-white"
                   >
                     <div className="aspect-[16/9] w-full relative overflow-hidden bg-slate-100">
                       <img 
