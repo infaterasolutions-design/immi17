@@ -1,7 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-const { NewsData } = require('../../lib/data');
+import Sidebar from '../../components/Sidebar';
+import { NewsData } from '../../lib/data';
 
 export default function ArticlePage({ article, relatedArticles }) {
   if (!article) {
@@ -25,53 +26,89 @@ export default function ArticlePage({ article, relatedArticles }) {
         <meta property="og:type" content="article" />
       </Head>
 
-      <div className="max-w-screen-lg mx-auto px-6 py-8">
-        {/* Article Header */}
-        <div className="mb-8">
-          <div className="flex items-center gap-2 mb-4">
-            <span className="text-[10px] font-bold text-primary uppercase tracking-widest">
-              {article.category?.replace(/-/g, ' ')}
-            </span>
-            <span className="w-1 h-1 bg-slate-300"></span>
-            <span className="text-[10px] font-bold text-primary uppercase tracking-widest">{article.tag}</span>
-          </div>
-          <h1 className="text-3xl lg:text-4xl font-bold headline-font text-slate-900 leading-tight mb-4">
-            {article.title}
-          </h1>
-          <p className="text-sm text-slate-500">{location} • {article.date} at {time}</p>
-        </div>
+      <div className="max-w-[1100px] mx-auto w-full mt-4 px-4 md:px-0 mb-16">
+        <div className="w-full grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-16 mt-8">
+          
+          {/* Social Floating Bar (Desktop) */}
+          <aside className="hidden xl:flex lg:col-span-1 flex-col items-center gap-6 sticky top-52 h-fit">
+            <button className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-50 text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200"><span className="material-symbols-outlined text-[20px]">share</span></button>
+            <button className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-50 text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200"><span className="material-symbols-outlined text-[20px]">bookmark</span></button>
+            <div className="w-px h-12 bg-slate-200"></div>
+            <button className="w-10 h-10 rounded-full flex items-center justify-center bg-slate-50 text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200"><span className="material-symbols-outlined text-[20px]">thumb_up</span></button>
+          </aside>
 
-        {/* Hero Image */}
-        <div className="mb-10">
-          <Image src={article.image} alt={article.title} width={1024} height={500} priority className="w-full h-auto max-h-[500px] object-cover" />
-        </div>
+          {/* Infinite Scroll Article Container */}
+          <div className="lg:col-span-7 w-full space-y-24 mb-16">
+            <article className="relative pb-12 border-b-2 border-slate-100">
+              
+              {/* Breadcrumbs / Category */}
+              <div className="flex items-center gap-2 mb-6">
+                <span className="bg-blue-100 text-primary px-3 py-1 rounded-none text-[10px] font-bold tracking-widest uppercase font-['Inter']">{article.tag || article.category?.replace(/-/g, ' ')}</span>
+                <span className="text-slate-300 text-xs">•</span>
+                <span className="text-slate-500 text-xs font-medium">8 min read</span>
+              </div>
+              
+              {/* Title */}
+              <h1 className="text-4xl md:text-5xl font-extrabold font-['Plus_Jakarta_Sans'] leading-[1.1] text-slate-900 mb-6 tracking-tight">
+                {article.title}
+              </h1>
+              
+              {/* Author Info */}
+              <div className="flex items-center gap-4 mb-10 pb-8 border-b border-slate-200">
+                <div className="w-12 h-12 rounded-none overflow-hidden bg-slate-100">
+                  <Image src="/Logo.png" alt="Author" width={48} height={48} className="w-full h-full object-cover" />
+                </div>
+                <div>
+                  <div className="text-slate-900 font-bold text-sm">Editorial Team</div>
+                  <div className="text-slate-500 text-xs">{article.date}</div>
+                </div>
+              </div>
 
-        {/* Article Body */}
-        <div
-          className="prose prose-slate prose-lg max-w-none mb-16"
-          dangerouslySetInnerHTML={{ __html: article.content }}
-        />
+              {/* Featured Image */}
+              <div className="mb-12 relative">
+                <div className="flex justify-end items-center gap-2 mb-2 relative z-20">
+                  <button title="Like this article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition-all duration-300 text-slate-600 shadow-sm"><span className="material-symbols-outlined text-[18px]">favorite</span></button>
+                  <button title="Save article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 hover:text-slate-900 transition-all duration-300 text-slate-600 shadow-sm"><span className="material-symbols-outlined text-[18px]">bookmark</span></button>
+                  <button title="Share this article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 text-slate-600 shadow-sm"><span className="material-symbols-outlined text-[18px]">share</span></button>
+                </div>
+                <div className="overflow-hidden shadow-2xl shadow-slate-200/50">
+                  <Image src={article.image} alt={article.title} width={800} height={450} priority className="w-full aspect-[16/9] object-cover" />
+                  <div className="p-4 bg-slate-50 text-slate-500 text-[11px] italic font-medium">Photography by USCIS Editorial Team.</div>
+                </div>
+              </div>
 
-        {/* Related Articles */}
-        {relatedArticles.length > 0 && (
-          <section className="border-t border-slate-200 pt-10">
-            <h2 className="text-xl font-bold headline-font text-slate-900 mb-6">Related Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {relatedArticles.map((related) => (
-                <Link key={related.id} href={`/article/${related.id}`} className="group flex gap-4 pb-4 border-b border-slate-100">
-                  <Image src={related.image} alt="" width={112} height={80} className="w-28 h-20 object-cover shrink-0" />
-                  <div>
-                    <span className="text-[10px] font-bold text-primary uppercase tracking-widest">{related.tag}</span>
-                    <h3 className="text-base font-bold headline-font group-hover:text-primary transition-colors mt-1 line-clamp-2">
-                      {related.title}
-                    </h3>
-                    <p className="text-xs text-slate-400 mt-1">{related.date}</p>
+              {/* Article Content */}
+              <div
+                className="prose max-w-none font-['Inter'] text-lg text-slate-700 leading-relaxed mb-16"
+                dangerouslySetInnerHTML={{ __html: article.content }}
+              />
+
+              {/* Related Articles injected natively below article content */}
+              {relatedArticles.length > 0 && (
+                <section className="border-t border-slate-200 pt-10">
+                  <h2 className="text-xl font-bold headline-font text-slate-900 mb-6">Related Articles</h2>
+                  <div className="grid grid-cols-1 gap-6">
+                    {relatedArticles.map((related) => (
+                      <Link key={related.id} href={`/article/${related.id}`} className="group flex gap-4 pb-4 border-b border-slate-100">
+                        <Image src={related.image} alt="" width={112} height={80} className="w-28 h-20 object-cover shrink-0" />
+                        <div>
+                          <span className="text-[10px] font-bold text-primary uppercase tracking-widest">{related.tag}</span>
+                          <h3 className="text-base font-bold headline-font group-hover:text-primary transition-colors mt-1 line-clamp-2">
+                            {related.title}
+                          </h3>
+                          <p className="text-xs text-slate-400 mt-1">{related.date}</p>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
-                </Link>
-              ))}
-            </div>
-          </section>
-        )}
+                </section>
+              )}
+            </article>
+          </div>
+
+          <Sidebar />
+
+        </div>
       </div>
     </>
   );
