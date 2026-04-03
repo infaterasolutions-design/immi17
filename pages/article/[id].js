@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 const { NewsData } = require('../../lib/data');
 
 export default function ArticlePage({ article, relatedArticles }) {
@@ -25,7 +27,9 @@ export default function ArticlePage({ article, relatedArticles }) {
         <meta property="og:type" content="article" />
       </Head>
 
-      <div className="max-w-screen-lg mx-auto px-6 py-8">
+      <Header />
+
+      <main className="max-w-screen-lg mx-auto px-6 py-8">
         {/* Article Header */}
         <div className="mb-8">
           <div className="flex items-center gap-2 mb-4">
@@ -72,7 +76,9 @@ export default function ArticlePage({ article, relatedArticles }) {
             </div>
           </section>
         )}
-      </div>
+      </main>
+
+      <Footer />
     </>
   );
 }
