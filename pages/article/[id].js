@@ -139,7 +139,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
       {/* Sponsored Content (Full Width) */}
       {sponsoredContent?.enabled && sponsoredContent?.items?.length > 0 && (
         <section className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#f5f5f5] pt-[40px] pb-0 border-y border-slate-200 mt-2">
-          <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
+          <div className="max-w-[1000px] mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center mb-6 px-1">
               <h2 className="text-[16px] md:text-[18px] font-bold text-slate-700 tracking-tight">Sponsored Content</h2>
               <a href="#" className="text-[11px] font-bold text-slate-500 hover:text-slate-800 transition-colors uppercase tracking-wider">Advertise Here</a>

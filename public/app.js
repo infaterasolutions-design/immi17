@@ -618,7 +618,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 </a>`;
             }).join('');
             featuresHtml += `<section class="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#f5f5f5] pt-[40px] pb-0 border-y border-slate-200 mt-0 mb-0">
-              <div class="max-w-[1100px] mx-auto px-4 sm:px-6">
+              <div class="max-w-[1000px] mx-auto px-4 sm:px-6">
                 <div class="flex justify-between items-center mb-6 px-1">
                   <h2 class="text-[16px] md:text-[18px] font-bold text-slate-700 tracking-tight">Sponsored Content</h2>
                   <a href="#" class="text-[11px] font-bold text-slate-500 hover:text-slate-800 transition-colors uppercase tracking-wider">Advertise Here</a>
