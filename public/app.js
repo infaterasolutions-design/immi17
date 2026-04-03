@@ -590,7 +590,7 @@ document.addEventListener('DOMContentLoaded', () => {
         if (rawRelated.length > 0) {
             let sliderHTML = rawRelated.map(r => {
                 const sDesc = (r.content || '').replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
-                return `<a href="#/article/${r.id}" class="snap-start shrink-0 group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 w-[85%] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(33.333%-24px)] min-w-[320px] max-w-[450px] flex flex-col bg-white">
+                return `<a href="#/article/${r.id}" class="snap-start shrink-0 group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex flex-col bg-white">
                   <div class="aspect-[16/9] w-full relative overflow-hidden bg-slate-100">
                     <img src="${r.image}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy" />
                   </div>
@@ -601,7 +601,7 @@ document.addEventListener('DOMContentLoaded', () => {
                   </div>
                 </a>`;
             }).join('');
-            featuresHtml += `<section class="w-screen max-w-[1350px] relative left-[50%] -translate-x-[50%] border-t border-slate-200 pt-10 px-4 md:px-8 mb-2"><h2 class="text-xl md:text-2xl font-bold headline-font text-slate-900 mb-4 border-l-4 border-primary pl-4">Related Articles</h2><div class="relative"><div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-2 hide-scrollbar">${sliderHTML}</div></div></section>`;
+            featuresHtml += `<section class="w-screen max-w-[1100px] relative left-[50%] -translate-x-[50%] border-t border-slate-200 pt-10 px-4 sm:px-6 mb-2"><h2 class="text-xl md:text-2xl font-bold headline-font text-slate-900 mb-4 border-l-4 border-primary pl-4">Related Articles</h2><div class="relative"><div class="flex overflow-x-auto snap-x snap-mandatory gap-6 pb-2 hide-scrollbar">${sliderHTML}</div></div></section>`;
         }
 
         // Sponsored Content

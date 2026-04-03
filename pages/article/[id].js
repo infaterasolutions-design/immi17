@@ -77,7 +77,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
 
         {/* Related Articles Slider */}
         {relatedArticles?.length > 0 && (
-          <section className="w-screen max-w-[1350px] relative left-[50%] -translate-x-[50%] border-t border-slate-200 pt-10 px-4 md:px-8 mb-2">
+          <section className="w-screen max-w-[1100px] relative left-[50%] -translate-x-[50%] border-t border-slate-200 pt-10 px-4 sm:px-6 mb-2">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl md:text-2xl font-bold headline-font text-slate-900 border-l-4 border-primary pl-4">Related Articles</h2>
               <div className="hidden md:flex gap-2">
@@ -105,7 +105,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
                   <Link 
                     key={related.id} 
                     href={`/article/${related.id}`} 
-                    className="snap-start shrink-0 group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 w-[85%] sm:w-[calc(50%-12px)] md:w-[calc(33.333%-16px)] lg:w-[calc(33.333%-24px)] min-w-[320px] max-w-[450px] flex flex-col bg-white"
+                    className="snap-start shrink-0 group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex flex-col bg-white"
                   >
                     <div className="aspect-[16/9] w-full relative overflow-hidden bg-slate-100">
                       <img 
