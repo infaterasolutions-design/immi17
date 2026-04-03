@@ -77,7 +77,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
 
         {/* Related Articles Slider */}
         {relatedArticles?.length > 0 && (
-          <section className="w-screen max-w-[1000px] relative left-[50%] -translate-x-[50%] border-t border-slate-200 pt-10 px-4 sm:px-6 mb-2">
+          <section className="max-w-[900px] w-full mx-auto border-t border-slate-200 pt-10 px-4 sm:px-6 mb-2">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-xl md:text-2xl font-bold headline-font text-slate-900 border-l-4 border-primary pl-4">Related Articles</h2>
               <div className="hidden md:flex gap-2">
@@ -136,9 +136,9 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
         )}
       </div>
 
-      {/* Sponsored Content (Full Width) */}
+      {/* Sponsored Content */}
       {sponsoredContent?.enabled && sponsoredContent?.items?.length > 0 && (
-        <section className="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#f5f5f5] pt-[40px] pb-0 border-y border-slate-200 mt-2">
+        <section className="max-w-[1100px] w-full mx-auto bg-[#f5f5f5] pt-[40px] pb-0 border-y border-slate-200 mt-2 rounded-lg">
           <div className="max-w-[1100px] mx-auto px-4 sm:px-6">
             <div className="flex justify-between items-center mb-6 px-1">
               <h2 className="text-[16px] md:text-[18px] font-bold text-slate-700 tracking-tight">Sponsored Content</h2>
