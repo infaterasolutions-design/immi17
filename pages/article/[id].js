@@ -146,14 +146,14 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
             </div>
             
             <div className="bg-white border border-slate-200 py-6 px-4 sm:px-6">
-              <div className="flex flex-wrap justify-center gap-x-10 gap-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
                 {sponsoredContent.items.slice(0, sponsoredContent.maxItems || 6).map((item) => (
                   <a 
                     key={item.id} 
                     href={item.url} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex items-start justify-between gap-4 group w-full md:w-[calc(50%-20px)] lg:w-[calc(33.333%-27px)] max-w-[340px]"
+                    className="flex items-start justify-between gap-4 group"
                   >
                     <div className="flex-1 pr-2">
                       <h3 className="text-[13px] sm:text-[14px] font-semibold text-slate-700 group-hover:text-primary transition-colors leading-[1.4] mb-1.5">
