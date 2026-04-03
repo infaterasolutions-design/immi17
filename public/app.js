@@ -617,7 +617,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <div class="w-[85px] h-[85px] shrink-0 bg-slate-100 overflow-hidden"><img src="${item.image}" alt="${item.sponsor}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/></div>
                 </a>`;
             }).join('');
-            featuresHtml += `<section class="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] bg-[#f5f5f5] pt-[40px] pb-0 border-y border-slate-200 mt-0 mb-0">
+            featuresHtml += `<section class="w-screen relative left-[50%] right-[50%] -ml-[50vw] -mr-[50vw] pt-[40px] pb-0 border-y border-slate-200 mt-0 mb-0">
               <div class="max-w-[1000px] mx-auto px-4 sm:px-6">
                 <div class="flex justify-between items-center mb-6 px-1">
                   <h2 class="text-[16px] md:text-[18px] font-bold text-slate-700 tracking-tight">Sponsored Content</h2>
