@@ -1,8 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
 const { NewsData } = require('../../lib/data');
 
 export default function CategoryPage({ category, subcategory, articles }) {
@@ -15,9 +13,7 @@ export default function CategoryPage({ category, subcategory, articles }) {
         <meta name="description" content={`Browse all ${displayName} articles — USA immigration updates, visa guides, and expert analysis.`} />
       </Head>
 
-      <Header />
-
-      <main className="max-w-screen-2xl mx-auto px-6 py-8">
+      <div className="max-w-screen-2xl mx-auto px-6 py-8">
         {/* Category Header */}
         <div className="mb-8">
           <p className="text-[10px] font-bold text-primary uppercase tracking-widest mb-2">Category</p>
@@ -51,9 +47,7 @@ export default function CategoryPage({ category, subcategory, articles }) {
             <p className="text-slate-500">No articles found in this category.</p>
           </div>
         )}
-      </main>
-
-      <Footer />
+      </div>
     </>
   );
 }

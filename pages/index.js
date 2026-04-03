@@ -2,8 +2,6 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useRef } from 'react';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import Sidebar from '../components/Sidebar';
 export default function Home({ initialMoreStories, allStories }) {
   const [moreStories, setMoreStories] = useState(initialMoreStories || []);
@@ -32,9 +30,7 @@ export default function Home({ initialMoreStories, allStories }) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
 
-      <Header />
-
-      <main className="max-w-[1100px] mx-auto w-full space-y-8 mt-4 px-4 md:px-0">
+      <div className="max-w-[1100px] mx-auto w-full space-y-8 mt-4 px-4 md:px-0">
         
         {/* Breaking News / Live Updates Banner */}
         <Link href="/live/h1b-visa-reform-2025" className="flex items-center gap-4 bg-white p-2 border border-slate-100 shadow-sm hover:shadow-md transition-shadow group">
@@ -308,9 +304,7 @@ export default function Home({ initialMoreStories, allStories }) {
           </div>
         </section>
 
-      </main>
-
-      <Footer />
+      </div>
     </>
   );
 }
