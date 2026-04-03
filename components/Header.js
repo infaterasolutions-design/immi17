@@ -1,10 +1,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Image from 'next/image';
-import dynamic from 'next/dynamic';
-
-const SearchOverlay = dynamic(() => import('./SearchOverlay'), { ssr: false });
+import SearchOverlay from './SearchOverlay';
 
 /* ── Navigation data structure ── */
 const NAV_ITEMS = [
@@ -207,8 +204,8 @@ export default function Header() {
         <div className="max-w-screen-2xl mx-auto flex items-center justify-between px-6 py-4 h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <Link href="/" className="text-2xl font-black tracking-tighter text-slate-900 flex">
-              <Image alt="The Digital Diplomat Logo" className="w-auto object-contain h-12" src="/Logo.png" width={180} height={48} priority />
+            <Link href="/" className="text-2xl font-black tracking-tighter text-slate-900">
+              <img alt="The Digital Diplomat Logo" className="w-auto object-contain h-12" src="/Logo.png" />
             </Link>
           </div>
 

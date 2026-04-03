@@ -1,9 +1,22 @@
+import React, { useRef } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
-const { NewsData } = require('../../lib/data');
+const { NewsData, AdminConfig } = require('../../lib/data');
 
-export default function ArticlePage({ article, relatedArticles }) {
+export default function ArticlePage({ article, relatedArticles, sponsoredContent }) {
+  const sliderRef = useRef(null);
+
+  const scrollLeft = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: -320, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (sliderRef.current) {
+      sliderRef.current.scrollBy({ left: 320, behavior: 'smooth' });
+    }
+  };
   if (!article) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -43,7 +56,7 @@ export default function ArticlePage({ article, relatedArticles }) {
 
         {/* Hero Image */}
         <div className="mb-10">
-          <Image src={article.image} alt={article.title} width={1024} height={500} priority className="w-full h-auto max-h-[500px] object-cover" />
+          <img src={article.image} alt={article.title} className="w-full h-auto max-h-[500px] object-cover" />
         </div>
 
         {/* Article Body */}
@@ -52,27 +65,120 @@ export default function ArticlePage({ article, relatedArticles }) {
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
 
-        {/* Related Articles */}
-        {relatedArticles.length > 0 && (
+        {/* Suggested Topics Tags */}
+        <div className="mb-16 flex flex-wrap gap-2 items-center">
+          <span className="text-sm font-bold text-slate-800 mr-2">Suggested Topics:</span>
+          {article.tag && (
+            <span className="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 cursor-pointer transition-colors">
+              #{article.tag}
+            </span>
+          )}
+        </div>
+
+        {/* Related Articles Slider */}
+        {relatedArticles?.length > 0 && (
           <section className="border-t border-slate-200 pt-10">
-            <h2 className="text-xl font-bold headline-font text-slate-900 mb-6">Related Articles</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {relatedArticles.map((related) => (
-                <Link key={related.id} href={`/article/${related.id}`} className="group flex gap-4 pb-4 border-b border-slate-100">
-                  <Image src={related.image} alt="" width={112} height={80} className="w-28 h-20 object-cover shrink-0" />
-                  <div>
-                    <span className="text-[10px] font-bold text-primary uppercase tracking-widest">{related.tag}</span>
-                    <h3 className="text-base font-bold headline-font group-hover:text-primary transition-colors mt-1 line-clamp-2">
-                      {related.title}
-                    </h3>
-                    <p className="text-xs text-slate-400 mt-1">{related.date}</p>
-                  </div>
-                </Link>
-              ))}
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold headline-font text-slate-900">Related Articles</h2>
+              <div className="hidden md:flex gap-2">
+                <button onClick={scrollLeft} className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-colors">
+                  <span className="material-symbols-outlined text-slate-600">chevron_left</span>
+                </button>
+                <button onClick={scrollRight} className="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center hover:bg-slate-50 transition-colors">
+                  <span className="material-symbols-outlined text-slate-600">chevron_right</span>
+                </button>
+              </div>
+            </div>
+            
+            <div className="relative">
+              <div 
+                ref={sliderRef}
+                className="flex overflow-x-auto snap-x snap-mandatory gap-4 md:gap-6 pb-4"
+                style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+              >
+                {/* Hide Webkit Scrollbar CSS */}
+                <style dangerouslySetInnerHTML={{__html: `
+                  div::-webkit-scrollbar { display: none; }
+                `}} />
+                
+                {relatedArticles.map((related) => (
+                  <Link 
+                    key={related.id} 
+                    href={`/article/${related.id}`} 
+                    className="snap-start shrink-0 group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex flex-col bg-white"
+                  >
+                    <div className="aspect-[16/9] w-full relative overflow-hidden bg-slate-100">
+                      <img 
+                        src={related.image} 
+                        alt={related.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        loading="lazy" 
+                      />
+                    </div>
+                    <div className="p-5 flex-grow flex flex-col">
+                      <span className="text-[10px] font-bold text-primary uppercase tracking-widest mb-2 inline-block relative after:content-[''] after:absolute after:w-full after:scale-x-0 after:h-[2px] after:bottom-0 after:left-0 after:bg-primary after:origin-bottom-right after:transition-transform after:duration-300 group-hover:after:scale-x-100 group-hover:after:origin-bottom-left w-max">
+                        {related.tag}
+                      </span>
+                      <h3 className="text-lg font-bold headline-font text-slate-900 group-hover:text-primary transition-colors line-clamp-2 mb-2">
+                        {related.title}
+                      </h3>
+                      {related.shortDesc && (
+                        <p className="text-sm text-slate-500 line-clamp-2 mt-auto">
+                          {related.shortDesc}
+                        </p>
+                      )}
+                    </div>
+                  </Link>
+                ))}
+              </div>
             </div>
           </section>
         )}
       </div>
+
+      {/* Sponsored Content (Full Width) */}
+      {sponsoredContent?.enabled && sponsoredContent?.items?.length > 0 && (
+        <section className="bg-[#f5f5f5] w-full py-12 md:py-16 border-t border-slate-200">
+          <div className="max-w-screen-lg mx-auto px-6">
+            <div className="flex items-end justify-between mb-8 border-b border-slate-300 pb-4">
+              <h2 className="text-2xl font-bold headline-font text-slate-900">Sponsored Content</h2>
+              <a href="#" className="text-sm font-semibold text-slate-500 hover:text-primary transition-colors flex items-center gap-1">
+                Advertise Here <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
+              </a>
+            </div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {sponsoredContent.items.slice(0, sponsoredContent.maxItems || 6).map((item) => (
+                <a 
+                  key={item.id} 
+                  href={item.url} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="flex gap-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-slate-100 group"
+                >
+                  <div className="w-20 h-20 shrink-0 bg-slate-100 rounded-md overflow-hidden">
+                    <img 
+                      src={item.image} 
+                      alt={item.title} 
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
+                      loading="lazy" 
+                    />
+                  </div>
+                  <div className="flex flex-col flex-grow justify-center">
+                    <h3 className="text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-primary transition-colors">
+                      {item.title}
+                    </h3>
+                    <div className="flex items-center gap-1 mt-2">
+                      <span className="text-xs font-semibold text-slate-500">Sponsored by</span>
+                      <span className="text-xs font-bold text-slate-700">{item.sponsor}</span>
+                    </div>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
     </>
   );
 }
@@ -99,16 +205,34 @@ export async function getServerSideProps(context) {
     context.res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=59');
   }
 
-  // Find related articles from same category
-  const relatedArticles = NewsData
-    .filter(a => a.category === article.category && a.id !== article.id)
-    .slice(0, 4)
-    .map(({ content, ...rest }) => rest);
+  // Data logic for related articles
+  const relatedConfig = AdminConfig?.relatedArticles || { enabled: true, mode: 'auto', manualIds: [] };
+  let rawRelatedArticles = [];
+  
+  if (relatedConfig.enabled) {
+    if (relatedConfig.mode === 'manual' && relatedConfig.manualIds?.length > 0) {
+      rawRelatedArticles = NewsData.filter(a => relatedConfig.manualIds.includes(a.id)).slice(0, 4);
+    } else {
+      // Auto mode: Same category, then tags, exclude current, sort by latest (assuming IDs descending for latest), limit 4
+      rawRelatedArticles = NewsData
+        .filter(a => a.id !== article.id && a.category === article.category)
+        .sort((a, b) => b.id - a.id)
+        .slice(0, 4);
+    }
+  }
+
+  const relatedArticles = rawRelatedArticles.map(({ content, ...rest }) => ({
+     ...rest,
+     shortDesc: content?.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...' || ''
+  }));
+
+  const sponsoredContent = AdminConfig?.sponsoredContent || { enabled: false, items: [] };
 
   return {
     props: {
       article,
       relatedArticles,
+      sponsoredContent,
     },
   };
 }

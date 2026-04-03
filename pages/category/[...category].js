@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 const { NewsData } = require('../../lib/data');
 
 export default function CategoryPage({ category, subcategory, articles }) {
@@ -26,10 +25,9 @@ export default function CategoryPage({ category, subcategory, articles }) {
             {articles.map((article) => (
               <Link key={article.id} href={`/article/${article.id}`} className="group">
                 <div className="overflow-hidden mb-4">
-                  <Image
+                  <img
                     src={article.image}
                     alt={article.title}
-                    width={500} height={300}
                     className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
