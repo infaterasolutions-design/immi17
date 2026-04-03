@@ -138,43 +138,45 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
 
       {/* Sponsored Content (Full Width) */}
       {sponsoredContent?.enabled && sponsoredContent?.items?.length > 0 && (
-        <section className="bg-[#f5f5f5] w-full py-12 md:py-16 border-t border-slate-200">
+        <section className="w-full py-8 md:py-12 border-t border-slate-200 bg-white">
           <div className="max-w-screen-lg mx-auto px-6">
-            <div className="flex items-end justify-between mb-8 border-b border-slate-300 pb-4">
-              <h2 className="text-2xl font-bold headline-font text-slate-900">Sponsored Content</h2>
-              <a href="#" className="text-sm font-semibold text-slate-500 hover:text-primary transition-colors flex items-center gap-1">
-                Advertise Here <span className="material-symbols-outlined text-[16px]">arrow_forward</span>
-              </a>
+            <div className="flex items-end justify-between mb-3 px-1">
+              <h2 className="text-[18px] md:text-xl font-bold text-slate-800 tracking-tight">Sponsored Content</h2>
+              <div className="flex items-center gap-1.5 pb-1">
+                <span className="text-[11px] font-extrabold text-slate-900 tracking-tight">dianomi</span>
+                <a href="#" className="text-[11px] font-medium text-slate-500 hover:text-slate-800 transition-colors">Advertise Here</a>
+              </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {sponsoredContent.items.slice(0, sponsoredContent.maxItems || 6).map((item) => (
-                <a 
-                  key={item.id} 
-                  href={item.url} 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex gap-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border border-slate-100 group"
-                >
-                  <div className="w-20 h-20 shrink-0 bg-slate-100 rounded-md overflow-hidden">
-                    <img 
-                      src={item.image} 
-                      alt={item.title} 
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" 
-                      loading="lazy" 
-                    />
-                  </div>
-                  <div className="flex flex-col flex-grow justify-center">
-                    <h3 className="text-sm font-bold text-slate-900 line-clamp-2 group-hover:text-primary transition-colors">
-                      {item.title}
-                    </h3>
-                    <div className="flex items-center gap-1 mt-2">
-                      <span className="text-xs font-semibold text-slate-500">Sponsored by</span>
-                      <span className="text-xs font-bold text-slate-700">{item.sponsor}</span>
+            <div className="border border-slate-200 bg-white p-5 sm:p-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">
+                {sponsoredContent.items.slice(0, sponsoredContent.maxItems || 6).map((item) => (
+                  <a 
+                    key={item.id} 
+                    href={item.url} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="flex items-start justify-between gap-4 group"
+                  >
+                    <div className="flex-1 pr-2">
+                      <h3 className="text-[13px] sm:text-[14px] font-semibold text-slate-700 group-hover:text-primary transition-colors leading-[1.4] mb-1.5">
+                        {item.title}
+                      </h3>
+                      <div className="text-[11px] text-slate-400 font-medium tracking-tight">
+                        Sponsored by {item.sponsor}
+                      </div>
                     </div>
-                  </div>
-                </a>
-              ))}
+                    <div className="w-[85px] h-[85px] shrink-0 bg-slate-100 overflow-hidden">
+                      <img 
+                        src={item.image} 
+                        alt={item.title} 
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
+                        loading="lazy" 
+                      />
+                    </div>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
         </section>

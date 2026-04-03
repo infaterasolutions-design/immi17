@@ -608,14 +608,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const sponCfg = window.AdminConfig?.sponsoredContent || { enabled: false, items: [] };
         if (sponCfg.enabled && sponCfg.items && sponCfg.items.length > 0) {
             let sponHTML = sponCfg.items.slice(0, sponCfg.maxItems || 6).map(item => {
-                return `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="group bg-white border border-slate-200 p-4 hover:shadow-xl transition-all flex items-center gap-4 relative overflow-hidden h-full rounded-xl">
-                  <div class="w-20 h-20 shrink-0 bg-slate-100 rounded-lg overflow-hidden relative z-10 shadow-[inset_0_2px_4px_rgba(0,0,0,0.05)]"><img src="${item.image}" alt="${item.sponsor}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" loading="lazy"/></div>
-                  <div class="flex-1 relative z-10"><h3 class="text-[13px] font-bold text-slate-900 group-hover:text-primary transition-colors line-clamp-2 leading-snug">${item.title}</h3><div class="flex items-center gap-1 mt-2 text-[10px] uppercase tracking-widest text-slate-500"><span class="font-medium">Sponsored by</span><span class="font-bold text-slate-700">${item.sponsor}</span></div></div>
+                return `<a href="${item.url}" target="_blank" rel="noopener noreferrer" class="flex items-start justify-between gap-4 group">
+                    <div class="flex-1 pr-2">
+                        <h3 class="text-[13px] sm:text-[14px] font-semibold text-slate-700 group-hover:text-primary transition-colors leading-[1.4] mb-1.5">${item.title}</h3>
+                        <div class="text-[11px] text-slate-400 font-medium tracking-tight">Sponsored by ${item.sponsor}</div>
+                    </div>
+                    <div class="w-[85px] h-[85px] shrink-0 bg-slate-100 overflow-hidden"><img src="${item.image}" alt="${item.sponsor}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" loading="lazy"/></div>
                 </a>`;
             }).join('');
-            featuresHtml += `<section class="bg-[#f8f9fa] rounded-2xl w-full py-12 px-6 lg:px-12 border border-slate-200/60 shadow-sm mb-12">
-              <div class="flex items-center justify-between mb-8"><h2 class="text-xs font-bold text-slate-400 tracking-widest uppercase flex items-center gap-2"><span class="material-symbols-outlined text-[14px]">campaign</span> Sponsored Content</h2><a href="#" class="text-[10px] uppercase font-bold text-slate-400 hover:text-primary transition-colors cursor-pointer tracking-wider underline underline-offset-2">Advertise Here</a></div>
-              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">${sponHTML}</div>
+            featuresHtml += `<section class="w-full py-8 md:py-12 bg-white mt-8 mb-4">
+              <div class="flex items-end justify-between mb-3 px-1">
+                <h2 class="text-[18px] md:text-xl font-bold text-slate-800 tracking-tight">Sponsored Content</h2>
+                <div class="flex items-center gap-1.5 pb-1"><span class="text-[11px] font-extrabold text-slate-900 tracking-tight">dianomi</span><a href="#" class="text-[11px] font-medium text-slate-500 hover:text-slate-800 transition-colors">Advertise Here</a></div>
+              </div>
+              <div class="border border-slate-200 bg-white p-5 sm:p-8"><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-10">${sponHTML}</div></div>
             </section>`;
         }
         featuresWrapper.innerHTML = featuresHtml;
