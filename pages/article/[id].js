@@ -89,30 +89,31 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
                 </button>
               </div>
             </div>
-            
+
             <div className="relative">
-              <div 
+              <div
                 ref={sliderRef}
                 className={`flex overflow-x-auto snap-x snap-mandatory gap-6 pb-2 ${relatedArticles.length < 3 ? 'md:justify-center' : ''}`}
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
                 {/* Hide Webkit Scrollbar CSS */}
-                <style dangerouslySetInnerHTML={{__html: `
+                <style dangerouslySetInnerHTML={{
+                  __html: `
                   div::-webkit-scrollbar { display: none; }
                 `}} />
-                
+
                 {relatedArticles.map((related) => (
-                  <Link 
-                    key={related.id} 
-                    href={`/article/${related.id}`} 
+                  <Link
+                    key={related.id}
+                    href={`/article/${related.id}`}
                     className="snap-start shrink-0 group border border-slate-200/60 rounded-xl overflow-hidden hover:shadow-lg transition-all duration-300 w-[85%] md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] flex flex-col bg-white"
                   >
                     <div className="aspect-[16/9] w-full relative overflow-hidden bg-slate-100">
-                      <img 
-                        src={related.image} 
-                        alt={related.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                        loading="lazy" 
+                      <img
+                        src={related.image}
+                        alt={related.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
                       />
                     </div>
                     <div className="p-5 flex-grow flex flex-col">
@@ -142,14 +143,14 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
               <h2 className="text-[16px] md:text-[18px] font-bold text-slate-700 tracking-tight">Sponsored Content</h2>
               <a href="#" className="text-[11px] font-bold text-slate-500 hover:text-slate-800 transition-colors uppercase tracking-wider">Advertise Here</a>
             </div>
-            
+
             <div className="bg-white border border-slate-200 py-6 px-4 sm:px-6">
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
                 {sponsoredContent.items.slice(0, sponsoredContent.maxItems || 6).map((item) => (
-                  <a 
-                    key={item.id} 
-                    href={item.url} 
-                    target="_blank" 
+                  <a
+                    key={item.id}
+                    href={item.url}
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-start justify-between gap-4 group"
                   >
@@ -162,11 +163,11 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
                       </div>
                     </div>
                     <div className="w-[85px] h-[85px] shrink-0 bg-slate-100 overflow-hidden">
-                      <img 
-                        src={item.image} 
-                        alt={item.title} 
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" 
-                        loading="lazy" 
+                      <img
+                        src={item.image}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                        loading="lazy"
                       />
                     </div>
                   </a>
@@ -205,7 +206,7 @@ export async function getServerSideProps(context) {
   // Data logic for related articles
   const relatedConfig = AdminConfig?.relatedArticles || { enabled: true, mode: 'auto', manualIds: [] };
   let rawRelatedArticles = [];
-  
+
   if (relatedConfig.enabled) {
     if (relatedConfig.mode === 'manual' && relatedConfig.manualIds?.length > 0) {
       rawRelatedArticles = NewsData.filter(a => relatedConfig.manualIds.includes(a.id)).slice(0, 4);
@@ -219,8 +220,8 @@ export async function getServerSideProps(context) {
   }
 
   const relatedArticles = rawRelatedArticles.map(({ content, ...rest }) => ({
-     ...rest,
-     shortDesc: content?.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...' || ''
+    ...rest,
+    shortDesc: content?.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...' || ''
   }));
 
   const sponsoredContent = AdminConfig?.sponsoredContent || { enabled: false, items: [] };
