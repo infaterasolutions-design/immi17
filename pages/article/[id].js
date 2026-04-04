@@ -61,7 +61,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
 
         {/* Article Body */}
         <div
-          className="prose prose-slate prose-lg max-w-none mb-16"
+          className="prose prose-slate prose-lg max-w-3xl mx-auto mb-16"
           dangerouslySetInnerHTML={{ __html: article.content }}
         />
 
