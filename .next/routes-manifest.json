@@ -1,0 +1,94 @@
+{
+  "version": 3,
+  "pages404": true,
+  "appType": "pages",
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "priority": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "onMatchHeaders": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/article/[id]",
+      "regex": "^/article/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/article/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/category/[category]",
+      "regex": "^/category/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcategory": "nxtPcategory"
+      },
+      "namedRegex": "^/category/(?<nxtPcategory>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/category/[...category]",
+      "regex": "^/category/(.+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcategory": "nxtPcategory"
+      },
+      "namedRegex": "^/category/(?<nxtPcategory>.+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [],
+  "dataRoutes": [
+    {
+      "page": "/article/[id]",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "dataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/article/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/article/(?<nxtPid>[^/]+?)\\.json$"
+    },
+    {
+      "page": "/category/[category]",
+      "routeKeys": {
+        "nxtPcategory": "nxtPcategory"
+      },
+      "dataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/category/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/category/(?<nxtPcategory>[^/]+?)\\.json$"
+    },
+    {
+      "page": "/category/[...category]",
+      "routeKeys": {
+        "nxtPcategory": "nxtPcategory"
+      },
+      "dataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/category/(.+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/category/(?<nxtPcategory>.+?)\\.json$"
+    }
+  ],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments",
+    "clientParamParsing": false,
+    "dynamicRSCPrerender": false
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

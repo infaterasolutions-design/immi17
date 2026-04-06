@@ -1,0 +1,43 @@
+{
+  "pages": {
+    "/_app": [
+      "static/chunks/0t6duahkn8fwt.js",
+      "static/chunks/0l-9bccegppw7.js",
+      "static/chunks/0v~g5_81ots--.js",
+      "static/chunks/11a093isosguh.css",
+      "static/chunks/turbopack-0ofw51279d3ml.js"
+    ],
+    "/_error": [
+      "static/chunks/0j7~ld_3glye7.js",
+      "static/chunks/0l-9bccegppw7.js",
+      "static/chunks/0v~g5_81ots--.js",
+      "static/chunks/turbopack-0yfhgla1~0w1q.js"
+    ],
+    "/article/[id]": [
+      "static/chunks/16_hioj8qomqv.js",
+      "static/chunks/0l-9bccegppw7.js",
+      "static/chunks/0v~g5_81ots--.js",
+      "static/chunks/turbopack-11e~eal-esz3f.js"
+    ],
+    "/category/[...category]": [
+      "static/chunks/0amzxvxgx19qd.js",
+      "static/chunks/0l-9bccegppw7.js",
+      "static/chunks/0v~g5_81ots--.js",
+      "static/chunks/turbopack-0-6lp~0roi46o.js"
+    ],
+    "/category/[category]": [
+      "static/chunks/0y1j81-3ubwhx.js",
+      "static/chunks/0l-9bccegppw7.js",
+      "static/chunks/0v~g5_81ots--.js",
+      "static/chunks/turbopack-0yzabuzpg91fc.js"
+    ]
+  },
+  "devFiles": [],
+  "polyfillFiles": [],
+  "lowPriorityFiles": [
+    "static/zqHI1N0B9hnkVknTKFHIw/_buildManifest.js",
+    "static/zqHI1N0B9hnkVknTKFHIw/_ssgManifest.js",
+    "static/zqHI1N0B9hnkVknTKFHIw/_clientMiddlewareManifest.js"
+  ],
+  "rootMainFiles": []
+}
