@@ -1,4 +1,7 @@
 self.__BUILD_MANIFEST = {
+  "/_error": [
+    "static/chunks/pages/_error.js"
+  ],
   "/article/[id]": [
     "static/chunks/pages/article/[id].js"
   ],

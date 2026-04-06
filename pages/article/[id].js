@@ -41,6 +41,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
       <div className="max-w-[1320px] mx-auto px-6 py-8">
 
         {/* ═══ Two-Column Grid: Article + Sidebar ═══ */}
+        <div className="max-w-[1100px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
 
           {/* ── Left Column: Article Content ── */}
@@ -134,6 +135,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
             </div>
           </aside>
 
+        </div>
         </div>
 
         {/* ═══ Full-Width Sections (below the grid) ═══ */}
