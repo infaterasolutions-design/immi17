@@ -1,10 +1,23 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState, useEffect } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 const { NewsData, AdminConfig } = require('../../lib/data');
 
 export default function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, mostViewed }) {
   const sliderRef = useRef(null);
+  const [shareOpen, setShareOpen] = useState(false);
+  const shareRef = useRef(null);
+
+  // Close share dropdown on outside click
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (shareRef.current && !shareRef.current.contains(e.target)) {
+        setShareOpen(false);
+      }
+    }
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
 
   const scrollLeft = () => {
     if (sliderRef.current) {
@@ -76,20 +89,48 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
               <p className="text-sm text-slate-500 mt-2">{location} • {article.date} at {time}</p>
             </div>
 
-            {/* Hero Image with Overlaid Buttons */}
-            <div className="mb-10 relative" style={{ aspectRatio: '16/9' }}>
-              <img src={article.image} alt={article.title} className="absolute inset-0 w-full h-full object-cover" />
-              {/* Share, Save & Like Buttons — Top-Right Corner ON the image */}
-              <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
-                <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-slate-600 hover:text-primary hover:bg-white transition-all shadow-md border border-white/30">
-                  <span className="material-symbols-outlined text-[18px]">share</span>
+            {/* Featured Image & Attached Share */}
+            <div className="mb-12 relative">
+              {/* Attached Actions (Above Image) */}
+              <div className="flex justify-end items-center gap-2 mb-2 relative z-20">
+                {/* Like Button */}
+                <button title="Like this article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition-all duration-300 text-slate-600 shadow-sm">
+                  <span className="material-symbols-outlined text-[18px]">favorite</span>
                 </button>
-                <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-slate-600 hover:text-primary hover:bg-white transition-all shadow-md border border-white/30">
+                {/* Save Button */}
+                <button title="Save article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 hover:text-slate-900 transition-all duration-300 text-slate-600 shadow-sm">
                   <span className="material-symbols-outlined text-[18px]">bookmark</span>
                 </button>
-                <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-slate-600 hover:text-primary hover:bg-white transition-all shadow-md border border-white/30">
-                  <span className="material-symbols-outlined text-[18px]">thumb_up</span>
-                </button>
+                {/* Share Button */}
+                <div className="relative" ref={shareRef}>
+                  <button title="Share this article" onClick={() => setShareOpen(!shareOpen)} className="share-btn w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 text-slate-600 shadow-sm">
+                    <span className="material-symbols-outlined text-[18px]">share</span>
+                  </button>
+                  {/* Share Dropdown */}
+                  <div className={`absolute top-full right-0 mt-3 bg-white shadow-2xl border border-slate-100 rounded-lg py-2 px-1 w-auto flex flex-col items-center gap-1 z-30 transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] origin-top-right ${shareOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-4'}`}>
+                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href))} title="Share on Facebook">
+                      <img src="/Facebook.jpeg" className="w-6 h-6 rounded-sm object-cover" alt="Facebook" />
+                    </button>
+                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href))} title="Share on X">
+                      <img src="/Twitter.jpg" className="w-6 h-6 rounded-sm object-cover" alt="X / Twitter" />
+                    </button>
+                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(window.location.href))} title="Share on LinkedIn">
+                      <img src="/Linkdin.png" className="w-6 h-6 rounded-sm object-cover" alt="LinkedIn" />
+                    </button>
+                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => { window.location.href='mailto:?subject=Read this article&body='+encodeURIComponent(window.location.href); }} title="Share via Email">
+                      <img src="/Mail.jpeg" className="w-6 h-6 rounded-sm object-cover" alt="Email" />
+                    </button>
+                    <div className="h-px bg-slate-100 my-1 w-full mx-2"></div>
+                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded text-slate-500" onClick={() => { navigator.clipboard.writeText(window.location.href); setShareOpen(false); }} title="Copy Link">
+                      <span className="material-symbols-outlined text-[18px]">link</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+              {/* Image */}
+              <div className="overflow-hidden shadow-2xl shadow-slate-200/50">
+                <img src={article.image} alt={article.title} className="w-full aspect-[16/9] object-cover" />
+                <div className="p-4 bg-slate-50 text-slate-500 text-[11px] italic font-medium">Photography by USCIS Editorial Team.</div>
               </div>
             </div>
 
