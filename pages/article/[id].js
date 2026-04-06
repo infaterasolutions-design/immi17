@@ -136,7 +136,7 @@ function ArticleBlock({ art, isFirst, onVisible, allArticles, sponsoredContent }
       </div>
 
       {/* Article Body — Progressive Content Reveal */}
-      <div className="relative mb-16">
+      <div className="relative mb-8">
         <div
           className="relative overflow-hidden transition-all duration-1000 ease-in-out"
           style={{ maxHeight: expanded ? '50000px' : '400px' }}
@@ -146,26 +146,48 @@ function ArticleBlock({ art, isFirst, onVisible, allArticles, sponsoredContent }
             dangerouslySetInnerHTML={{ __html: art.content }}
           />
 
-          {/* ═══ Expanded-only content: Suggested Topics + Related + Sponsored ═══ */}
+          {/* Suggested Topics — inside expandable area */}
           {expanded && (
-            <div className="mt-16">
-              {/* Suggested Topics Tags */}
-              <div className="mb-12 flex flex-wrap gap-2 items-center">
-                <span className="text-sm font-bold text-slate-800 mr-2">Suggested Topics:</span>
-                {art.tag && (
-                  <span className="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 cursor-pointer transition-colors">
-                    #{art.tag}
-                  </span>
-                )}
-                {art.category && (
-                  <span className="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 cursor-pointer transition-colors">
-                    #{art.category.replace(/-/g, ' ')}
-                  </span>
-                )}
-              </div>
+            <div className="mt-16 mb-4 flex flex-wrap gap-2 items-center">
+              <span className="text-sm font-bold text-slate-800 mr-2">Suggested Topics:</span>
+              {art.tag && (
+                <span className="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 cursor-pointer transition-colors">
+                  #{art.tag}
+                </span>
+              )}
+              {art.category && (
+                <span className="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 cursor-pointer transition-colors">
+                  #{art.category.replace(/-/g, ' ')}
+                </span>
+              )}
+            </div>
+          )}
 
-              {/* Related Articles (same category) */}
-              {relatedArticles.length > 0 && (
+          {/* Gradient Fading Overlay (collapsed state only) */}
+          {!expanded && (
+            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10"></div>
+          )}
+        </div>
+        {/* Keep Reading Button */}
+        {!expanded && (
+          <div className="flex justify-center -mt-6 relative z-20">
+            <button
+              onClick={() => setExpanded(true)}
+              className="bg-slate-900 text-white font-bold text-xs tracking-widest uppercase px-8 py-4 shadow-xl hover:bg-primary transition-colors flex items-center gap-2"
+            >
+              Keep Reading <span className="material-symbols-outlined text-sm">expand_more</span>
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* ═══ Related Articles & Sponsored — OUTSIDE overflow, full-bleed 1100px ═══ */}
+      {expanded && (
+        <>
+          {/* Related Articles (same category) */}
+          {relatedArticles.length > 0 && (
+            <div className="relative left-1/2 -translate-x-1/2 w-screen" style={{ maxWidth: '100vw' }}>
+              <div className="max-w-[1100px] mx-auto px-6">
                 <section className="border-t border-slate-200 pt-10 mb-8">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl md:text-2xl font-bold headline-font text-slate-900 border-l-4 border-primary pl-4">Related Articles</h3>
@@ -209,17 +231,21 @@ function ArticleBlock({ art, isFirst, onVisible, allArticles, sponsoredContent }
                     </div>
                   </div>
                 </section>
-              )}
+              </div>
+            </div>
+          )}
 
-              {/* Sponsored Content */}
-              {sponsoredContent?.enabled && sponsoredContent?.items?.length > 0 && (
-                <section className="border-t border-slate-200 pt-10 pb-4">
+          {/* Sponsored Content */}
+          {sponsoredContent?.enabled && sponsoredContent?.items?.length > 0 && (
+            <div className="relative left-1/2 -translate-x-1/2 w-screen" style={{ maxWidth: '100vw' }}>
+              <div className="max-w-[1100px] mx-auto px-6">
+                <section className="border-t border-slate-200 pt-10 pb-4 mb-8">
                   <div className="flex justify-between items-center mb-6 px-1">
                     <h3 className="text-[16px] md:text-[18px] font-bold text-slate-700 tracking-tight">Sponsored Content</h3>
                     <a href="#" className="text-[11px] font-bold text-slate-500 hover:text-slate-800 transition-colors uppercase tracking-wider">Advertise Here</a>
                   </div>
                   <div className="bg-white border border-slate-200 py-6 px-4 sm:px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-10 gap-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-8">
                       {sponsoredContent.items.slice(0, sponsoredContent.maxItems || 6).map((item) => (
                         <a key={item.id} href={item.url} target="_blank" rel="noopener noreferrer" className="flex items-start justify-between gap-4 group">
                           <div className="flex-1 pr-2">
@@ -236,27 +262,11 @@ function ArticleBlock({ art, isFirst, onVisible, allArticles, sponsoredContent }
                     </div>
                   </div>
                 </section>
-              )}
+              </div>
             </div>
           )}
-
-          {/* Gradient Fading Overlay (collapsed state only) */}
-          {!expanded && (
-            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10"></div>
-          )}
-        </div>
-        {/* Keep Reading Button */}
-        {!expanded && (
-          <div className="flex justify-center -mt-6 relative z-20">
-            <button
-              onClick={() => setExpanded(true)}
-              className="bg-slate-900 text-white font-bold text-xs tracking-widest uppercase px-8 py-4 shadow-xl hover:bg-primary transition-colors flex items-center gap-2"
-            >
-              Keep Reading <span className="material-symbols-outlined text-sm">expand_more</span>
-            </button>
-          </div>
-        )}
-      </div>
+        </>
+      )}
     </article>
   );
 }
