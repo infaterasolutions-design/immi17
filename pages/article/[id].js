@@ -1,13 +1,19 @@
-import React, { useRef, useState, useEffect } from 'react';
+import React, { useRef, useState, useEffect, useCallback } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 const { NewsData, AdminConfig } = require('../../lib/data');
 
-export default function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, mostViewed }) {
-  const sliderRef = useRef(null);
-  const [shareOpen, setShareOpen] = useState(false);
+/* ═══════════════════════════════════════════════════════
+   ArticleBlock — Self-contained article with its own state
+   ═══════════════════════════════════════════════════════ */
+function ArticleBlock({ art, isFirst, onVisible }) {
   const [expanded, setExpanded] = useState(false);
+  const [shareOpen, setShareOpen] = useState(false);
   const shareRef = useRef(null);
+  const sentinelRef = useRef(null);
+
+  const location = art.location || 'Washington, D.C.';
+  const time = art.time || '10:00 AM EDT';
 
   // Close share dropdown on outside click
   useEffect(() => {
@@ -20,6 +26,149 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // IntersectionObserver to update URL when this article is in view
+  useEffect(() => {
+    if (!sentinelRef.current) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && onVisible) {
+          onVisible(art.id, art.title);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(sentinelRef.current);
+    return () => observer.disconnect();
+  }, [art.id, art.title, onVisible]);
+
+  return (
+    <article
+      ref={sentinelRef}
+      className="article-instance relative pb-12 border-b-2 border-slate-100"
+      data-article-id={art.id}
+    >
+      {/* Article Header — Medium-Style */}
+      <div className="mb-8">
+        {/* Breadcrumbs / Category */}
+        <div className="flex items-center gap-2 mb-6">
+          <span className="bg-blue-100 text-primary px-3 py-1 text-[10px] font-bold tracking-widest uppercase font-['Inter']">
+            {art.category?.replace(/-/g, ' ')}{art.tag ? ` | ${art.tag}` : ''}
+          </span>
+          <span className="text-slate-300 text-xs">•</span>
+          <span className="text-slate-500 text-xs font-medium">8 min read</span>
+        </div>
+        {/* Title */}
+        <h2 className={`${isFirst ? 'text-4xl md:text-5xl' : 'text-3xl md:text-4xl'} font-extrabold font-['Plus_Jakarta_Sans'] leading-[1.1] text-slate-900 mb-6 tracking-tight`}>
+          {art.title}
+        </h2>
+        {/* Short Description */}
+        {art.shortDesc && (
+          <p className="text-xl md:text-[22px] text-slate-500 font-light leading-snug mb-10">
+            {art.shortDesc}
+          </p>
+        )}
+        {/* Author Info */}
+        <div className="flex items-center gap-4 mb-10 pb-8 border-b border-slate-200">
+          <div className="w-12 h-12 overflow-hidden bg-slate-100">
+            <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlpFlSWOxpjJiSoeARkHCAEsvWdJ2SZDIpSxixs1n3L0rg6kDpyx4fBBsQUzO3AC-OSmrkT36GClfkVfQLMRGcckkL6D3hyt3sLTNovArIgGZXzAqZgE4gYg81EiYz0YQEtFYaQVRuX8VqDZ9bVzy_H71rQpkYYYzmeT0GHoAMKQhg3OIFsfeaBavT5evFro0cvQVHv80qgh7lAqczXoHTa6qu3lRhBHtZskD9IeB8ndXzJ4phYM2bbTP5lKG7a709K-YpX9pg9lM" alt="Editorial Team" />
+          </div>
+          <div>
+            <div className="text-slate-900 font-bold text-sm">Editorial Team</div>
+            <div className="text-slate-500 text-xs">{location} • {art.date} at {time}</div>
+          </div>
+        </div>
+      </div>
+
+      {/* Featured Image & Attached Share */}
+      <div className="mb-12 relative">
+        {/* Attached Actions (Above Image) */}
+        <div className="flex justify-end items-center gap-2 mb-2 relative z-20">
+          <button title="Like this article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition-all duration-300 text-slate-600 shadow-sm">
+            <span className="material-symbols-outlined text-[18px]">favorite</span>
+          </button>
+          <button title="Save article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 hover:text-slate-900 transition-all duration-300 text-slate-600 shadow-sm">
+            <span className="material-symbols-outlined text-[18px]">bookmark</span>
+          </button>
+          <div className="relative" ref={shareRef}>
+            <button title="Share this article" onClick={() => setShareOpen(!shareOpen)} className="share-btn w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 text-slate-600 shadow-sm">
+              <span className="material-symbols-outlined text-[18px]">share</span>
+            </button>
+            <div className={`absolute top-full right-0 mt-3 bg-white shadow-2xl border border-slate-100 rounded-lg py-2 px-1 w-auto flex flex-col items-center gap-1 z-30 transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] origin-top-right ${shareOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-4'}`}>
+              <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.origin+'/article/'+art.id))} title="Share on Facebook">
+                <img src="/Facebook.jpeg" className="w-6 h-6 rounded-sm object-cover" alt="Facebook" />
+              </button>
+              <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.origin+'/article/'+art.id))} title="Share on X">
+                <img src="/Twitter.jpg" className="w-6 h-6 rounded-sm object-cover" alt="X / Twitter" />
+              </button>
+              <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(window.location.origin+'/article/'+art.id))} title="Share on LinkedIn">
+                <img src="/Linkdin.png" className="w-6 h-6 rounded-sm object-cover" alt="LinkedIn" />
+              </button>
+              <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => { window.location.href='mailto:?subject=Read this article&body='+encodeURIComponent(window.location.origin+'/article/'+art.id); }} title="Share via Email">
+                <img src="/Mail.jpeg" className="w-6 h-6 rounded-sm object-cover" alt="Email" />
+              </button>
+              <div className="h-px bg-slate-100 my-1 w-full mx-2"></div>
+              <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded text-slate-500" onClick={() => { navigator.clipboard.writeText(window.location.origin+'/article/'+art.id); setShareOpen(false); }} title="Copy Link">
+                <span className="material-symbols-outlined text-[18px]">link</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        {/* Image */}
+        <div className="overflow-hidden shadow-2xl shadow-slate-200/50">
+          <img src={art.image} alt={art.title} className="w-full aspect-[16/9] object-cover" />
+          <div className="p-4 bg-slate-50 text-slate-500 text-[11px] italic font-medium">Photography by USCIS Editorial Team.</div>
+        </div>
+      </div>
+
+      {/* Article Body — Progressive Content Reveal */}
+      <div className="relative mb-16">
+        <div
+          className="relative overflow-hidden transition-all duration-1000 ease-in-out"
+          style={{ maxHeight: expanded ? '5000px' : '400px' }}
+        >
+          <div
+            className="prose prose-slate prose-lg max-w-none"
+            dangerouslySetInnerHTML={{ __html: art.content }}
+          />
+          {!expanded && (
+            <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10"></div>
+          )}
+        </div>
+        {!expanded && (
+          <div className="flex justify-center -mt-6 relative z-20">
+            <button
+              onClick={() => setExpanded(true)}
+              className="bg-slate-900 text-white font-bold text-xs tracking-widest uppercase px-8 py-4 shadow-xl hover:bg-primary transition-colors flex items-center gap-2"
+            >
+              Keep Reading <span className="material-symbols-outlined text-sm">expand_more</span>
+            </button>
+          </div>
+        )}
+      </div>
+
+      {/* Suggested Topics Tags */}
+      <div className="mb-8 flex flex-wrap gap-2 items-center">
+        <span className="text-sm font-bold text-slate-800 mr-2">Suggested Topics:</span>
+        {art.tag && (
+          <span className="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 cursor-pointer transition-colors">
+            #{art.tag}
+          </span>
+        )}
+      </div>
+    </article>
+  );
+}
+
+
+/* ═══════════════════════════════════════════════════════
+   Main Page — Infinite Scroll Container
+   ═══════════════════════════════════════════════════════ */
+export default function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, mostViewed, nextArticles }) {
+  const sliderRef = useRef(null);
+  const loadTriggerRef = useRef(null);
+  const [loadedArticles, setLoadedArticles] = useState([article]);
+  const [nextQueue, setNextQueue] = useState(nextArticles || []);
+
   const scrollLeft = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({ left: -320, behavior: 'smooth' });
@@ -31,6 +180,33 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
       sliderRef.current.scrollBy({ left: 320, behavior: 'smooth' });
     }
   };
+
+  // Update browser URL when a different article scrolls into view
+  const handleArticleVisible = useCallback((id, title) => {
+    const newUrl = `/article/${id}`;
+    if (window.location.pathname !== newUrl) {
+      window.history.replaceState(null, title, newUrl);
+      document.title = `${title} | The Digital Diplomat`;
+    }
+  }, []);
+
+  // IntersectionObserver to load next article when user reaches bottom
+  useEffect(() => {
+    if (!loadTriggerRef.current || nextQueue.length === 0) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && nextQueue.length > 0) {
+          setLoadedArticles(prev => [...prev, nextQueue[0]]);
+          setNextQueue(prev => prev.slice(1));
+        }
+      },
+      { rootMargin: '600px' } // pre-load when 600px from bottom
+    );
+    observer.observe(loadTriggerRef.current);
+    return () => observer.disconnect();
+  }, [nextQueue]);
+
   if (!article) {
     return (
       <div className="flex items-center justify-center min-h-[60vh]">
@@ -38,9 +214,6 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
       </div>
     );
   }
-
-  const location = article.location || 'Washington, D.C.';
-  const time = article.time || '10:00 AM EDT';
 
   return (
     <>
@@ -72,124 +245,21 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
             </button>
           </aside>
 
-          {/* ── Main Column: Article Content ── */}
-          <div className="lg:col-span-7 w-full">
+          {/* ── Main Column: Infinite Scroll Article Container ── */}
+          <div className="lg:col-span-7 w-full space-y-24">
+            {loadedArticles.map((art, idx) => (
+              <ArticleBlock
+                key={art.id}
+                art={art}
+                isFirst={idx === 0}
+                onVisible={handleArticleVisible}
+              />
+            ))}
 
-            {/* Article Header — Medium-Style */}
-            <div className="mb-8">
-              {/* Breadcrumbs / Category */}
-              <div className="flex items-center gap-2 mb-6">
-                <span className="bg-blue-100 text-primary px-3 py-1 text-[10px] font-bold tracking-widest uppercase font-['Inter']">
-                  {article.category?.replace(/-/g, ' ')}{article.tag ? ` | ${article.tag}` : ''}
-                </span>
-                <span className="text-slate-300 text-xs">•</span>
-                <span className="text-slate-500 text-xs font-medium">8 min read</span>
-              </div>
-              {/* Title */}
-              <h1 className="text-4xl md:text-5xl font-extrabold font-['Plus_Jakarta_Sans'] leading-[1.1] text-slate-900 mb-6 tracking-tight">
-                {article.title}
-              </h1>
-              {/* Short Description */}
-              {article.shortDesc && (
-                <p className="text-xl md:text-[22px] text-slate-500 font-light leading-snug mb-10">
-                  {article.shortDesc}
-                </p>
-              )}
-              {/* Author Info */}
-              <div className="flex items-center gap-4 mb-10 pb-8 border-b border-slate-200">
-                <div className="w-12 h-12 overflow-hidden bg-slate-100">
-                  <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlpFlSWOxpjJiSoeARkHCAEsvWdJ2SZDIpSxixs1n3L0rg6kDpyx4fBBsQUzO3AC-OSmrkT36GClfkVfQLMRGcckkL6D3hyt3sLTNovArIgGZXzAqZgE4gYg81EiYz0YQEtFYaQVRuX8VqDZ9bVzy_H71rQpkYYYzmeT0GHoAMKQhg3OIFsfeaBavT5evFro0cvQVHv80qgh7lAqczXoHTa6qu3lRhBHtZskD9IeB8ndXzJ4phYM2bbTP5lKG7a709K-YpX9pg9lM" alt="Editorial Team" />
-                </div>
-                <div>
-                  <div className="text-slate-900 font-bold text-sm">Editorial Team</div>
-                  <div className="text-slate-500 text-xs">{location} • {article.date} at {time}</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Featured Image & Attached Share */}
-            <div className="mb-12 relative">
-              {/* Attached Actions (Above Image) */}
-              <div className="flex justify-end items-center gap-2 mb-2 relative z-20">
-                {/* Like Button */}
-                <button title="Like this article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-red-50 hover:text-red-500 transition-all duration-300 text-slate-600 shadow-sm">
-                  <span className="material-symbols-outlined text-[18px]">favorite</span>
-                </button>
-                {/* Save Button */}
-                <button title="Save article" className="w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-slate-200 hover:text-slate-900 transition-all duration-300 text-slate-600 shadow-sm">
-                  <span className="material-symbols-outlined text-[18px]">bookmark</span>
-                </button>
-                {/* Share Button */}
-                <div className="relative" ref={shareRef}>
-                  <button title="Share this article" onClick={() => setShareOpen(!shareOpen)} className="share-btn w-10 h-10 rounded-full bg-slate-100 flex items-center justify-center hover:bg-primary hover:text-white transition-all duration-300 text-slate-600 shadow-sm">
-                    <span className="material-symbols-outlined text-[18px]">share</span>
-                  </button>
-                  {/* Share Dropdown */}
-                  <div className={`absolute top-full right-0 mt-3 bg-white shadow-2xl border border-slate-100 rounded-lg py-2 px-1 w-auto flex flex-col items-center gap-1 z-30 transition-all duration-500 ease-[cubic-bezier(0.25,0.8,0.25,1)] origin-top-right ${shareOpen ? 'opacity-100 pointer-events-auto translate-y-0' : 'opacity-0 pointer-events-none translate-y-4'}`}>
-                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://facebook.com/sharer/sharer.php?u='+encodeURIComponent(window.location.href))} title="Share on Facebook">
-                      <img src="/Facebook.jpeg" className="w-6 h-6 rounded-sm object-cover" alt="Facebook" />
-                    </button>
-                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://twitter.com/intent/tweet?url='+encodeURIComponent(window.location.href))} title="Share on X">
-                      <img src="/Twitter.jpg" className="w-6 h-6 rounded-sm object-cover" alt="X / Twitter" />
-                    </button>
-                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => window.open('https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(window.location.href))} title="Share on LinkedIn">
-                      <img src="/Linkdin.png" className="w-6 h-6 rounded-sm object-cover" alt="LinkedIn" />
-                    </button>
-                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded" onClick={() => { window.location.href='mailto:?subject=Read this article&body='+encodeURIComponent(window.location.href); }} title="Share via Email">
-                      <img src="/Mail.jpeg" className="w-6 h-6 rounded-sm object-cover" alt="Email" />
-                    </button>
-                    <div className="h-px bg-slate-100 my-1 w-full mx-2"></div>
-                    <button className="flex items-center justify-center w-10 h-10 hover:bg-slate-100 transition-colors rounded text-slate-500" onClick={() => { navigator.clipboard.writeText(window.location.href); setShareOpen(false); }} title="Copy Link">
-                      <span className="material-symbols-outlined text-[18px]">link</span>
-                    </button>
-                  </div>
-                </div>
-              </div>
-              {/* Image */}
-              <div className="overflow-hidden shadow-2xl shadow-slate-200/50">
-                <img src={article.image} alt={article.title} className="w-full aspect-[16/9] object-cover" />
-                <div className="p-4 bg-slate-50 text-slate-500 text-[11px] italic font-medium">Photography by USCIS Editorial Team.</div>
-              </div>
-            </div>
-
-            {/* Article Body — Progressive Content Reveal */}
-            <div className="relative mb-16">
-              <div
-                className="relative overflow-hidden transition-all duration-1000 ease-in-out"
-                style={{ maxHeight: expanded ? '5000px' : '400px' }}
-              >
-                <div
-                  className="prose prose-slate prose-lg max-w-none"
-                  dangerouslySetInnerHTML={{ __html: article.content }}
-                />
-                {/* Gradient Fading Overlay */}
-                {!expanded && (
-                  <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10"></div>
-                )}
-              </div>
-              {/* Keep Reading Button */}
-              {!expanded && (
-                <div className="flex justify-center -mt-6 relative z-20">
-                  <button
-                    onClick={() => setExpanded(true)}
-                    className="bg-slate-900 text-white font-bold text-xs tracking-widest uppercase px-8 py-4 shadow-xl hover:bg-primary transition-colors flex items-center gap-2"
-                  >
-                    Keep Reading <span className="material-symbols-outlined text-sm">expand_more</span>
-                  </button>
-                </div>
-              )}
-            </div>
-
-            {/* Suggested Topics Tags */}
-            <div className="mb-16 flex flex-wrap gap-2 items-center">
-              <span className="text-sm font-bold text-slate-800 mr-2">Suggested Topics:</span>
-              {article.tag && (
-                <span className="px-4 py-2 bg-slate-100 text-slate-700 text-sm font-medium rounded-full hover:bg-slate-200 cursor-pointer transition-colors">
-                  #{article.tag}
-                </span>
-              )}
-            </div>
-
+            {/* Invisible trigger to load next article */}
+            {nextQueue.length > 0 && (
+              <div ref={loadTriggerRef} className="h-1" />
+            )}
           </div>
 
           {/* ── Right Column: Sidebar ── */}
@@ -267,7 +337,6 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
                 className={`flex overflow-x-auto snap-x snap-mandatory gap-6 pb-2 ${relatedArticles.length < 3 ? 'md:justify-center' : ''}`}
                 style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
               >
-                {/* Hide Webkit Scrollbar CSS */}
                 <style dangerouslySetInnerHTML={{
                   __html: `
                   div::-webkit-scrollbar { display: none; }
@@ -372,10 +441,8 @@ export async function getServerSideProps(context) {
   const ageDays = (now.getTime() - publishDate.getTime()) / (1000 * 60 * 60 * 24);
 
   if (ageDays > 3) {
-    // Old article → SSG-like: cache at edge for 24 hours
     context.res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=86400');
   } else {
-    // New article → SSR: re-render every 60 seconds
     context.res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=59');
   }
 
@@ -387,7 +454,6 @@ export async function getServerSideProps(context) {
     if (relatedConfig.mode === 'manual' && relatedConfig.manualIds?.length > 0) {
       rawRelatedArticles = NewsData.filter(a => relatedConfig.manualIds.includes(a.id)).slice(0, 4);
     } else {
-      // Auto mode: Same category, then tags, exclude current, sort by latest (assuming IDs descending for latest), limit 4
       rawRelatedArticles = NewsData
         .filter(a => a.id !== article.id && a.category === article.category)
         .sort((a, b) => b.id - a.id)
@@ -417,6 +483,20 @@ export async function getServerSideProps(context) {
     .slice(0, 3)
     .map(({ content, ...rest }) => rest);
 
+  // ── Next articles queue for infinite scroll ──
+  // Exclude current article and id=999, provide up to 5 more articles
+  const nextArticles = NewsData
+    .filter(a => a.id !== articleId && a.id !== 999)
+    .sort((a, b) => b.id - a.id)
+    .slice(0, 5)
+    .map(a => {
+      const pt = a.content?.replace(/<[^>]*>?/gm, '').trim() || '';
+      return {
+        ...a,
+        shortDesc: pt.length > 200 ? pt.substring(0, 200) + '...' : pt,
+      };
+    });
+
   return {
     props: {
       article,
@@ -424,6 +504,7 @@ export async function getServerSideProps(context) {
       sponsoredContent,
       latestNews,
       mostViewed,
+      nextArticles,
     },
   };
 }
