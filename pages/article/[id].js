@@ -6,6 +6,7 @@ const { NewsData, AdminConfig } = require('../../lib/data');
 export default function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, mostViewed }) {
   const sliderRef = useRef(null);
   const [shareOpen, setShareOpen] = useState(false);
+  const [expanded, setExpanded] = useState(false);
   const shareRef = useRef(null);
 
   // Close share dropdown on outside click
@@ -151,11 +152,33 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
               </div>
             </div>
 
-            {/* Article Body */}
-            <div
-              className="prose prose-slate prose-lg max-w-none mb-16"
-              dangerouslySetInnerHTML={{ __html: article.content }}
-            />
+            {/* Article Body — Progressive Content Reveal */}
+            <div className="relative mb-16">
+              <div
+                className="relative overflow-hidden transition-all duration-1000 ease-in-out"
+                style={{ maxHeight: expanded ? '5000px' : '400px' }}
+              >
+                <div
+                  className="prose prose-slate prose-lg max-w-none"
+                  dangerouslySetInnerHTML={{ __html: article.content }}
+                />
+                {/* Gradient Fading Overlay */}
+                {!expanded && (
+                  <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-white via-white/80 to-transparent pointer-events-none z-10"></div>
+                )}
+              </div>
+              {/* Keep Reading Button */}
+              {!expanded && (
+                <div className="flex justify-center -mt-6 relative z-20">
+                  <button
+                    onClick={() => setExpanded(true)}
+                    className="bg-slate-900 text-white font-bold text-xs tracking-widest uppercase px-8 py-4 shadow-xl hover:bg-primary transition-colors flex items-center gap-2"
+                  >
+                    Keep Reading <span className="material-symbols-outlined text-sm">expand_more</span>
+                  </button>
+                </div>
+              )}
+            </div>
 
             {/* Suggested Topics Tags */}
             <div className="mb-16 flex flex-wrap gap-2 items-center">
