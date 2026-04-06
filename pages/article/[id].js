@@ -40,12 +40,26 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
 
       <div className="max-w-[1320px] mx-auto px-6 py-8">
 
-        {/* ═══ Two-Column Grid: Article + Sidebar ═══ */}
+        {/* ═══ Three-Column Grid: Social + Article + Sidebar ═══ */}
         <div className="max-w-[1100px] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16">
+        <div className="grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-16">
 
-          {/* ── Left Column: Article Content ── */}
-          <div className="lg:col-span-8 w-full">
+          {/* ── Social Floating Bar (Desktop) ── */}
+          <aside className="hidden xl:flex lg:col-span-1 flex-col items-center gap-6 sticky top-52 h-fit">
+            <button className="w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200/50">
+              <span className="material-symbols-outlined text-[20px]">share</span>
+            </button>
+            <button className="w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200/50">
+              <span className="material-symbols-outlined text-[20px]">bookmark</span>
+            </button>
+            <div className="w-px h-12 bg-slate-200/30"></div>
+            <button className="w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200/50">
+              <span className="material-symbols-outlined text-[20px]">thumb_up</span>
+            </button>
+          </aside>
+
+          {/* ── Main Column: Article Content ── */}
+          <div className="lg:col-span-7 w-full">
 
             {/* Article Header */}
             <div className="mb-4">

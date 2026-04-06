@@ -581,10 +581,71 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                     className: "max-w-[1100px] mx-auto",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16",
+                            className: "grid grid-cols-1 xl:grid-cols-12 gap-8 lg:gap-16",
                             children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
+                                    className: "hidden xl:flex lg:col-span-1 flex-col items-center gap-6 sticky top-52 h-fit",
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            className: "w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200/50",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "material-symbols-outlined text-[20px]",
+                                                children: "share"
+                                            }, void 0, false, {
+                                                fileName: "[project]/pages/article/[id].js",
+                                                lineNumber: 50,
+                                                columnNumber: 15
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/article/[id].js",
+                                            lineNumber: 49,
+                                            columnNumber: 13
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            className: "w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200/50",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "material-symbols-outlined text-[20px]",
+                                                children: "bookmark"
+                                            }, void 0, false, {
+                                                fileName: "[project]/pages/article/[id].js",
+                                                lineNumber: 53,
+                                                columnNumber: 15
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/article/[id].js",
+                                            lineNumber: 52,
+                                            columnNumber: 13
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "w-px h-12 bg-slate-200/30"
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/article/[id].js",
+                                            lineNumber: 55,
+                                            columnNumber: 13
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                            className: "w-10 h-10 rounded-full flex items-center justify-center bg-white text-slate-500 hover:text-primary transition-all shadow-sm border border-slate-200/50",
+                                            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "material-symbols-outlined text-[20px]",
+                                                children: "thumb_up"
+                                            }, void 0, false, {
+                                                fileName: "[project]/pages/article/[id].js",
+                                                lineNumber: 57,
+                                                columnNumber: 15
+                                            }, this)
+                                        }, void 0, false, {
+                                            fileName: "[project]/pages/article/[id].js",
+                                            lineNumber: 56,
+                                            columnNumber: 13
+                                        }, this)
+                                    ]
+                                }, void 0, true, {
+                                    fileName: "[project]/pages/article/[id].js",
+                                    lineNumber: 48,
+                                    columnNumber: 11
+                                }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                    className: "lg:col-span-8 w-full",
+                                    className: "lg:col-span-7 w-full",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "mb-4",
@@ -597,14 +658,14 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                             children: article.category?.replace(/-/g, ' ')
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 53,
+                                                            lineNumber: 67,
                                                             columnNumber: 17
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                             className: "w-1 h-1 bg-slate-300"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 56,
+                                                            lineNumber: 70,
                                                             columnNumber: 17
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -612,13 +673,13 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                             children: article.tag
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 57,
+                                                            lineNumber: 71,
                                                             columnNumber: 17
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 52,
+                                                    lineNumber: 66,
                                                     columnNumber: 15
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
@@ -626,7 +687,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                     children: article.title
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 59,
+                                                    lineNumber: 73,
                                                     columnNumber: 15
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -640,13 +701,13 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 62,
+                                                    lineNumber: 76,
                                                     columnNumber: 15
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/article/[id].js",
-                                            lineNumber: 51,
+                                            lineNumber: 65,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -657,12 +718,12 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                 className: "w-full h-auto max-h-[500px] object-cover"
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/article/[id].js",
-                                                lineNumber: 67,
+                                                lineNumber: 81,
                                                 columnNumber: 15
                                             }, this)
                                         }, void 0, false, {
                                             fileName: "[project]/pages/article/[id].js",
-                                            lineNumber: 66,
+                                            lineNumber: 80,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -672,7 +733,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/pages/article/[id].js",
-                                            lineNumber: 71,
+                                            lineNumber: 85,
                                             columnNumber: 13
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -683,7 +744,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                     children: "Suggested Topics:"
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 78,
+                                                    lineNumber: 92,
                                                     columnNumber: 15
                                                 }, this),
                                                 article.tag && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -694,19 +755,19 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 80,
+                                                    lineNumber: 94,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/article/[id].js",
-                                            lineNumber: 77,
+                                            lineNumber: 91,
                                             columnNumber: 13
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/article/[id].js",
-                                    lineNumber: 48,
+                                    lineNumber: 62,
                                     columnNumber: 11
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -722,7 +783,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                         children: "Latest News"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/article/[id].js",
-                                                        lineNumber: 94,
+                                                        lineNumber: 108,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -736,7 +797,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                         children: i === 0 ? 'BREAKING' : item.date
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/article/[id].js",
-                                                                        lineNumber: 98,
+                                                                        lineNumber: 112,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h4", {
@@ -744,24 +805,24 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                         children: item.title
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/article/[id].js",
-                                                                        lineNumber: 99,
+                                                                        lineNumber: 113,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, item.id, true, {
                                                                 fileName: "[project]/pages/article/[id].js",
-                                                                lineNumber: 97,
+                                                                lineNumber: 111,
                                                                 columnNumber: 21
                                                             }, this))
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/article/[id].js",
-                                                        lineNumber: 95,
+                                                        lineNumber: 109,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/article/[id].js",
-                                                lineNumber: 93,
+                                                lineNumber: 107,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -772,7 +833,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                         children: "Most Viewed"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/article/[id].js",
-                                                        lineNumber: 107,
+                                                        lineNumber: 121,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -788,12 +849,12 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                             children: "Read More"
                                                                         }, void 0, false, {
                                                                             fileName: "[project]/pages/article/[id].js",
-                                                                            lineNumber: 111,
+                                                                            lineNumber: 125,
                                                                             columnNumber: 92
                                                                         }, this)
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/article/[id].js",
-                                                                        lineNumber: 111,
+                                                                        lineNumber: 125,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -801,7 +862,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                         children: String(i + 1).padStart(2, '0')
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/pages/article/[id].js",
-                                                                        lineNumber: 112,
+                                                                        lineNumber: 126,
                                                                         columnNumber: 23
                                                                     }, this),
                                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -811,7 +872,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                                 children: item.title
                                                                             }, void 0, false, {
                                                                                 fileName: "[project]/pages/article/[id].js",
-                                                                                lineNumber: 114,
+                                                                                lineNumber: 128,
                                                                                 columnNumber: 25
                                                                             }, this),
                                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -824,30 +885,30 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                                 ]
                                                                             }, void 0, true, {
                                                                                 fileName: "[project]/pages/article/[id].js",
-                                                                                lineNumber: 115,
+                                                                                lineNumber: 129,
                                                                                 columnNumber: 25
                                                                             }, this)
                                                                         ]
                                                                     }, void 0, true, {
                                                                         fileName: "[project]/pages/article/[id].js",
-                                                                        lineNumber: 113,
+                                                                        lineNumber: 127,
                                                                         columnNumber: 23
                                                                     }, this)
                                                                 ]
                                                             }, item.id, true, {
                                                                 fileName: "[project]/pages/article/[id].js",
-                                                                lineNumber: 110,
+                                                                lineNumber: 124,
                                                                 columnNumber: 21
                                                             }, this))
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/article/[id].js",
-                                                        lineNumber: 108,
+                                                        lineNumber: 122,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/pages/article/[id].js",
-                                                lineNumber: 106,
+                                                lineNumber: 120,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -860,7 +921,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                             children: "mail"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 125,
+                                                            lineNumber: 139,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -868,7 +929,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                             children: "Editorial Digest"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 126,
+                                                            lineNumber: 140,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -876,7 +937,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                             children: "Stay updated with critical immigration law changes delivered to your inbox weekly."
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 127,
+                                                            lineNumber: 141,
                                                             columnNumber: 19
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -888,7 +949,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                     type: "email"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/article/[id].js",
-                                                                    lineNumber: 129,
+                                                                    lineNumber: 143,
                                                                     columnNumber: 21
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -896,35 +957,35 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                     children: "Subscribe Now"
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/article/[id].js",
-                                                                    lineNumber: 130,
+                                                                    lineNumber: 144,
                                                                     columnNumber: 21
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 128,
+                                                            lineNumber: 142,
                                                             columnNumber: 19
                                                         }, this)
                                                     ]
                                                 }, void 0, true, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 124,
+                                                    lineNumber: 138,
                                                     columnNumber: 17
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/article/[id].js",
-                                                lineNumber: 123,
+                                                lineNumber: 137,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/article/[id].js",
-                                        lineNumber: 90,
+                                        lineNumber: 104,
                                         columnNumber: 13
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/article/[id].js",
-                                    lineNumber: 89,
+                                    lineNumber: 103,
                                     columnNumber: 11
                                 }, this)
                             ]
@@ -944,7 +1005,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                             children: "Related Articles"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/article/[id].js",
-                                            lineNumber: 146,
+                                            lineNumber: 160,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -958,12 +1019,12 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                         children: "chevron_left"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/article/[id].js",
-                                                        lineNumber: 149,
+                                                        lineNumber: 163,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 148,
+                                                    lineNumber: 162,
                                                     columnNumber: 17
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -974,24 +1035,24 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                         children: "chevron_right"
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/article/[id].js",
-                                                        lineNumber: 152,
+                                                        lineNumber: 166,
                                                         columnNumber: 19
                                                     }, this)
                                                 }, void 0, false, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 151,
+                                                    lineNumber: 165,
                                                     columnNumber: 17
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/pages/article/[id].js",
-                                            lineNumber: 147,
+                                            lineNumber: 161,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/article/[id].js",
-                                    lineNumber: 145,
+                                    lineNumber: 159,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1012,7 +1073,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                 }
                                             }, void 0, false, {
                                                 fileName: "[project]/pages/article/[id].js",
-                                                lineNumber: 164,
+                                                lineNumber: 178,
                                                 columnNumber: 17
                                             }, this),
                                             relatedArticles.map((related)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$client$5d$__$28$ecmascript$29$__["default"], {
@@ -1028,12 +1089,12 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                 loading: "lazy"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/article/[id].js",
-                                                                lineNumber: 176,
+                                                                lineNumber: 190,
                                                                 columnNumber: 23
                                                             }, this)
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 175,
+                                                            lineNumber: 189,
                                                             columnNumber: 21
                                                         }, this),
                                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1044,7 +1105,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                     children: related.tag
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/article/[id].js",
-                                                                    lineNumber: 184,
+                                                                    lineNumber: 198,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
@@ -1052,7 +1113,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                     children: related.title
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/article/[id].js",
-                                                                    lineNumber: 187,
+                                                                    lineNumber: 201,
                                                                     columnNumber: 23
                                                                 }, this),
                                                                 related.shortDesc && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1060,36 +1121,36 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                     children: related.shortDesc
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/pages/article/[id].js",
-                                                                    lineNumber: 191,
+                                                                    lineNumber: 205,
                                                                     columnNumber: 25
                                                                 }, this)
                                                             ]
                                                         }, void 0, true, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 183,
+                                                            lineNumber: 197,
                                                             columnNumber: 21
                                                         }, this)
                                                     ]
                                                 }, related.id, true, {
                                                     fileName: "[project]/pages/article/[id].js",
-                                                    lineNumber: 170,
+                                                    lineNumber: 184,
                                                     columnNumber: 19
                                                 }, this))
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/pages/article/[id].js",
-                                        lineNumber: 158,
+                                        lineNumber: 172,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/article/[id].js",
-                                    lineNumber: 157,
+                                    lineNumber: 171,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/article/[id].js",
-                            lineNumber: 144,
+                            lineNumber: 158,
                             columnNumber: 11
                         }, this),
                         sponsoredContent?.enabled && sponsoredContent?.items?.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("section", {
@@ -1103,7 +1164,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                             children: "Sponsored Content"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/article/[id].js",
-                                            lineNumber: 207,
+                                            lineNumber: 221,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("a", {
@@ -1112,13 +1173,13 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                             children: "Advertise Here"
                                         }, void 0, false, {
                                             fileName: "[project]/pages/article/[id].js",
-                                            lineNumber: 208,
+                                            lineNumber: 222,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/pages/article/[id].js",
-                                    lineNumber: 206,
+                                    lineNumber: 220,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1139,7 +1200,7 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                 children: item.title
                                                             }, void 0, false, {
                                                                 fileName: "[project]/pages/article/[id].js",
-                                                                lineNumber: 222,
+                                                                lineNumber: 236,
                                                                 columnNumber: 23
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1150,13 +1211,13 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                                 ]
                                                             }, void 0, true, {
                                                                 fileName: "[project]/pages/article/[id].js",
-                                                                lineNumber: 225,
+                                                                lineNumber: 239,
                                                                 columnNumber: 23
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/pages/article/[id].js",
-                                                        lineNumber: 221,
+                                                        lineNumber: 235,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1168,34 +1229,34 @@ function ArticlePage({ article, relatedArticles, sponsoredContent, latestNews, m
                                                             loading: "lazy"
                                                         }, void 0, false, {
                                                             fileName: "[project]/pages/article/[id].js",
-                                                            lineNumber: 230,
+                                                            lineNumber: 244,
                                                             columnNumber: 23
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/pages/article/[id].js",
-                                                        lineNumber: 229,
+                                                        lineNumber: 243,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, item.id, true, {
                                                 fileName: "[project]/pages/article/[id].js",
-                                                lineNumber: 214,
+                                                lineNumber: 228,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/pages/article/[id].js",
-                                        lineNumber: 212,
+                                        lineNumber: 226,
                                         columnNumber: 15
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/pages/article/[id].js",
-                                    lineNumber: 211,
+                                    lineNumber: 225,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/pages/article/[id].js",
-                            lineNumber: 205,
+                            lineNumber: 219,
                             columnNumber: 11
                         }, this)
                     ]
