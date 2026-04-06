@@ -77,15 +77,18 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
             </div>
 
             {/* Hero Image with Overlaid Buttons */}
-            <div className="mb-10 aspect-[16/9] overflow-hidden relative group">
-              <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
-              {/* Share & Save Buttons — Top-Right Corner */}
+            <div className="mb-10 relative" style={{ aspectRatio: '16/9' }}>
+              <img src={article.image} alt={article.title} className="absolute inset-0 w-full h-full object-cover" />
+              {/* Share, Save & Like Buttons — Top-Right Corner ON the image */}
               <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
                 <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-slate-600 hover:text-primary hover:bg-white transition-all shadow-md border border-white/30">
                   <span className="material-symbols-outlined text-[18px]">share</span>
                 </button>
                 <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-slate-600 hover:text-primary hover:bg-white transition-all shadow-md border border-white/30">
                   <span className="material-symbols-outlined text-[18px]">bookmark</span>
+                </button>
+                <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-slate-600 hover:text-primary hover:bg-white transition-all shadow-md border border-white/30">
+                  <span className="material-symbols-outlined text-[18px]">thumb_up</span>
                 </button>
               </div>
             </div>
