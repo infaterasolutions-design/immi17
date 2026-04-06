@@ -186,8 +186,7 @@ function ArticleBlock({ art, isFirst, onVisible, allArticles, sponsoredContent }
         <>
           {/* Related Articles (same category) */}
           {relatedArticles.length > 0 && (
-            <div className="relative left-1/2 -translate-x-1/2 w-screen" style={{ maxWidth: '100vw' }}>
-              <div className="max-w-[1100px] mx-auto px-6">
+            <div style={{ width: '160%', maxWidth: '1050px' }}>
                 <section className="border-t border-slate-200 pt-10 mb-8">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl md:text-2xl font-bold headline-font text-slate-900 border-l-4 border-primary pl-4">Related Articles</h3>
@@ -231,14 +230,12 @@ function ArticleBlock({ art, isFirst, onVisible, allArticles, sponsoredContent }
                     </div>
                   </div>
                 </section>
-              </div>
             </div>
           )}
 
           {/* Sponsored Content */}
           {sponsoredContent?.enabled && sponsoredContent?.items?.length > 0 && (
-            <div className="relative left-1/2 -translate-x-1/2 w-screen" style={{ maxWidth: '100vw' }}>
-              <div className="max-w-[1100px] mx-auto px-6">
+            <div style={{ width: '160%', maxWidth: '1050px' }}>
                 <section className="border-t border-slate-200 pt-10 pb-4 mb-8">
                   <div className="flex justify-between items-center mb-6 px-1">
                     <h3 className="text-[16px] md:text-[18px] font-bold text-slate-700 tracking-tight">Sponsored Content</h3>
@@ -262,7 +259,6 @@ function ArticleBlock({ art, isFirst, onVisible, allArticles, sponsoredContent }
                     </div>
                   </div>
                 </section>
-              </div>
             </div>
           )}
         </>
