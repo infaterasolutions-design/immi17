@@ -76,9 +76,18 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
               <p className="text-sm text-slate-500 mt-2">{location} • {article.date} at {time}</p>
             </div>
 
-            {/* Hero Image */}
-            <div className="mb-10">
-              <img src={article.image} alt={article.title} className="w-full h-auto max-h-[500px] object-cover" />
+            {/* Hero Image with Overlaid Buttons */}
+            <div className="mb-10 aspect-[16/9] overflow-hidden relative group">
+              <img src={article.image} alt={article.title} className="w-full h-full object-cover" />
+              {/* Share & Save Buttons — Top-Right Corner */}
+              <div className="absolute top-3 right-3 flex items-center gap-2 z-10">
+                <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-slate-600 hover:text-primary hover:bg-white transition-all shadow-md border border-white/30">
+                  <span className="material-symbols-outlined text-[18px]">share</span>
+                </button>
+                <button className="w-9 h-9 rounded-full flex items-center justify-center bg-white/90 backdrop-blur-sm text-slate-600 hover:text-primary hover:bg-white transition-all shadow-md border border-white/30">
+                  <span className="material-symbols-outlined text-[18px]">bookmark</span>
+                </button>
+              </div>
             </div>
 
             {/* Article Body */}
