@@ -74,19 +74,36 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
           {/* ── Main Column: Article Content ── */}
           <div className="lg:col-span-7 w-full">
 
-            {/* Article Header */}
-            <div className="mb-4">
-              <div className="flex items-center gap-2 mb-4">
-                <span className="text-[10px] font-bold text-primary uppercase tracking-widest">
-                  {article.category?.replace(/-/g, ' ')}
+            {/* Article Header — Medium-Style */}
+            <div className="mb-8">
+              {/* Breadcrumbs / Category */}
+              <div className="flex items-center gap-2 mb-6">
+                <span className="bg-blue-100 text-primary px-3 py-1 text-[10px] font-bold tracking-widest uppercase font-['Inter']">
+                  {article.category?.replace(/-/g, ' ')}{article.tag ? ` | ${article.tag}` : ''}
                 </span>
-                <span className="w-1 h-1 bg-slate-300"></span>
-                <span className="text-[10px] font-bold text-primary uppercase tracking-widest">{article.tag}</span>
+                <span className="text-slate-300 text-xs">•</span>
+                <span className="text-slate-500 text-xs font-medium">8 min read</span>
               </div>
-              <h1 className="text-3xl lg:text-4xl font-bold headline-font text-slate-900 leading-tight mb-4">
+              {/* Title */}
+              <h1 className="text-4xl md:text-5xl font-extrabold font-['Plus_Jakarta_Sans'] leading-[1.1] text-slate-900 mb-6 tracking-tight">
                 {article.title}
               </h1>
-              <p className="text-sm text-slate-500 mt-2">{location} • {article.date} at {time}</p>
+              {/* Short Description */}
+              {article.shortDesc && (
+                <p className="text-xl md:text-[22px] text-slate-500 font-light leading-snug mb-10">
+                  {article.shortDesc}
+                </p>
+              )}
+              {/* Author Info */}
+              <div className="flex items-center gap-4 mb-10 pb-8 border-b border-slate-200">
+                <div className="w-12 h-12 overflow-hidden bg-slate-100">
+                  <img className="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBlpFlSWOxpjJiSoeARkHCAEsvWdJ2SZDIpSxixs1n3L0rg6kDpyx4fBBsQUzO3AC-OSmrkT36GClfkVfQLMRGcckkL6D3hyt3sLTNovArIgGZXzAqZgE4gYg81EiYz0YQEtFYaQVRuX8VqDZ9bVzy_H71rQpkYYYzmeT0GHoAMKQhg3OIFsfeaBavT5evFro0cvQVHv80qgh7lAqczXoHTa6qu3lRhBHtZskD9IeB8ndXzJ4phYM2bbTP5lKG7a709K-YpX9pg9lM" alt="Editorial Team" />
+                </div>
+                <div>
+                  <div className="text-slate-900 font-bold text-sm">Editorial Team</div>
+                  <div className="text-slate-500 text-xs">{location} • {article.date} at {time}</div>
+                </div>
+              </div>
             </div>
 
             {/* Featured Image & Attached Share */}
@@ -321,6 +338,10 @@ export async function getServerSideProps(context) {
   if (!article) {
     return { notFound: true };
   }
+
+  // Generate short description from content (strip HTML, truncate)
+  const plainText = article.content?.replace(/<[^>]*>?/gm, '').trim() || '';
+  article.shortDesc = plainText.length > 200 ? plainText.substring(0, 200) + '...' : plainText;
 
   // ── Dynamic hybrid caching based on article age ──
   const publishDate = new Date(article.date);
