@@ -186,7 +186,7 @@ function ArticleBlock({ art, isFirst, onVisible, allArticles, sponsoredContent }
         <>
           {/* Related Articles (same category) */}
           {relatedArticles.length > 0 && (
-            <div style={{ width: '160%', maxWidth: '1050px' }}>
+            <div className="w-full">
                 <section className="border-t border-slate-200 pt-10 mb-8">
                   <div className="flex items-center justify-between mb-4">
                     <h3 className="text-xl md:text-2xl font-bold headline-font text-slate-900 border-l-4 border-primary pl-4">Related Articles</h3>
@@ -384,7 +384,7 @@ export default function ArticlePage({ article, sponsoredContent, latestNews, mos
                       <span className="text-3xl font-black text-slate-200 italic font-['Plus_Jakarta_Sans']">{String(i + 1).padStart(2, '0')}</span>
                       <div>
                         <h4 className="text-sm font-bold text-slate-900 leading-snug group-hover:text-primary transition-colors">{item.title}</h4>
-                        <span className="text-[10px] text-slate-500 font-medium uppercase tracking-tighter">{item.tag} • {Math.floor(Math.random() * 15 + 5)}k views</span>
+                        <span className="text-[10px] text-slate-500 font-medium uppercase tracking-tighter">{item.tag} • {(item.id % 15) + 5}k views</span>
                       </div>
                     </div>
                   ))}
