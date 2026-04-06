@@ -136,7 +136,6 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
           </aside>
 
         </div>
-        </div>
 
         {/* ═══ Full-Width Sections (below the grid) ═══ */}
 
@@ -241,6 +240,7 @@ export default function ArticlePage({ article, relatedArticles, sponsoredContent
             </div>
           </section>
         )}
+        </div>
       </div>
     </>
   );
