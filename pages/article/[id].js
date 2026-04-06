@@ -427,16 +427,10 @@ export async function getServerSideProps(context) {
   const plainText = article.content?.replace(/<[^>]*>?/gm, '').trim() || '';
   article.shortDesc = plainText.length > 200 ? plainText.substring(0, 200) + '...' : plainText;
 
-  // ── Dynamic hybrid caching based on article age ──
-  const publishDate = new Date(article.date);
-  const now = new Date();
-  const ageDays = (now.getTime() - publishDate.getTime()) / (1000 * 60 * 60 * 24);
-
-  if (ageDays > 3) {
-    context.res.setHeader('Cache-Control', 'public, s-maxage=86400, stale-while-revalidate=86400');
-  } else {
-    context.res.setHeader('Cache-Control', 'public, s-maxage=60, stale-while-revalidate=59');
-  }
+  context.res.setHeader(
+    'Cache-Control',
+    'no-store'
+  );
 
   const sponsoredContent = AdminConfig?.sponsoredContent || { enabled: false, items: [] };
 
