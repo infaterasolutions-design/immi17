@@ -47,31 +47,42 @@
       "namedRegex": "^/category/(?<nxtPcategory>.+?)(?:/)?$"
     }
   ],
-  "staticRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    }
+  ],
   "dataRoutes": [
+    {
+      "page": "/",
+      "dataRouteRegex": "^/_next/data/Jfh3DUY7V5dWq1nAzmos6/index\\.json$"
+    },
     {
       "page": "/article/[id]",
       "routeKeys": {
         "nxtPid": "nxtPid"
       },
-      "dataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/article/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/article/(?<nxtPid>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/Jfh3DUY7V5dWq1nAzmos6/article/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/Jfh3DUY7V5dWq1nAzmos6/article/(?<nxtPid>[^/]+?)\\.json$"
     },
     {
       "page": "/category/[category]",
       "routeKeys": {
         "nxtPcategory": "nxtPcategory"
       },
-      "dataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/category/([^/]+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/category/(?<nxtPcategory>[^/]+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/Jfh3DUY7V5dWq1nAzmos6/category/([^/]+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/Jfh3DUY7V5dWq1nAzmos6/category/(?<nxtPcategory>[^/]+?)\\.json$"
     },
     {
       "page": "/category/[...category]",
       "routeKeys": {
         "nxtPcategory": "nxtPcategory"
       },
-      "dataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/category/(.+?)\\.json$",
-      "namedDataRouteRegex": "^/_next/data/zqHI1N0B9hnkVknTKFHIw/category/(?<nxtPcategory>.+?)\\.json$"
+      "dataRouteRegex": "^/_next/data/Jfh3DUY7V5dWq1nAzmos6/category/(.+?)\\.json$",
+      "namedDataRouteRegex": "^/_next/data/Jfh3DUY7V5dWq1nAzmos6/category/(?<nxtPcategory>.+?)\\.json$"
     }
   ],
   "rsc": {
