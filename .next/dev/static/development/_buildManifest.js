@@ -1,9 +1,12 @@
 self.__BUILD_MANIFEST = {
-  "/_error": [
-    "static/chunks/pages/_error.js"
+  "/": [
+    "static/chunks/pages/index.js"
   ],
   "/article/[id]": [
     "static/chunks/pages/article/[id].js"
+  ],
+  "/category/[category]": [
+    "static/chunks/pages/category/[category].js"
   ],
   "__rewrites": {
     "afterFiles": [],
@@ -11,6 +14,7 @@ self.__BUILD_MANIFEST = {
     "fallback": []
   },
   "sortedPages": [
+    "/",
     "/_app",
     "/_error",
     "/article/[id]",
