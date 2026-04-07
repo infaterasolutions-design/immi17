@@ -1,7 +1,0 @@
-{
-  "/": "pages/index.js",
-  "/_app": "pages/_app.js",
-  "/_document": "pages/_document.js",
-  "/article/[id]": "pages/article/[id].js",
-  "/category/[category]": "pages/category/[category].js"
-}
